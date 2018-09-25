@@ -1,0 +1,17 @@
+{
+  "name": "der-spielplatz",
+  "private": true,
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterp/der-spielplatz.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0"
+  },
+  "scripts": {}
+}
