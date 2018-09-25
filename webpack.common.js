@@ -7,7 +7,7 @@ module.exports = {
     app: "./src/index.js"
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(["dist/static"]),
     new HtmlWebpackPlugin({
       title: "Der Spielplatz"
     })
@@ -53,6 +53,6 @@ module.exports = {
   output: {
     pathinfo: true,
     filename: "[name].chunk.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist/static")
   }
 };
