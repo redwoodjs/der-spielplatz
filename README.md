@@ -4,7 +4,7 @@ Is a simple app that allows you to upload a bunch of photos and information of p
 
 The photos and playground information is shared publicaly.
 
-## Getting start
+## Getting started
 
 ```terminal
 yarn install

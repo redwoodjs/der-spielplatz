@@ -1,19 +1,19 @@
-const merge = require("webpack-merge");
+const merge = require('webpack-merge');
 
-const common = require("./webpack.common.js");
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: 'development',
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: "./dist/static",
+    contentBase: './dist/static',
     proxy: {
-      "/.netlify/functions": {
-        target: "http://localhost:9000",
+      '/.netlify/functions': {
+        target: 'http://localhost:9000',
         pathRewrite: {
-          "^/\\.netlify/functions": ""
-        }
-      }
-    }
-  }
+          '^/\\.netlify/functions': '',
+        },
+      },
+    },
+  },
 });

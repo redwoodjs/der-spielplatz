@@ -1,1 +1,6 @@
-module.exports = { extends: "@peterp/eslint-config" };
+module.exports = {
+  extends: '@peterp/eslint-config',
+  rules: {
+    indent: ['error', 2],
+  },
+};
