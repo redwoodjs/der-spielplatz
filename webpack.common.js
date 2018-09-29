@@ -8,10 +8,6 @@ module.exports = {
     app: './src/index.js',
   },
   plugins: [
-    new DirectoryNamedWebpackPlugin({
-      honorIndex: true,
-      exclude: /node_modules/,
-    }),
     new CleanWebpackPlugin(['dist/static']),
     new HtmlWebpackPlugin({
       title: 'Der Spielplatz',
@@ -59,5 +55,13 @@ module.exports = {
     pathinfo: true,
     filename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist/static'),
+  },
+  resolve: {
+    plugins: [
+      new DirectoryNamedWebpackPlugin({
+        honorIndex: true,
+        exclude: /node_modules/,
+      }),
+    ],
   },
 };
