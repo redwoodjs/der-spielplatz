@@ -6,13 +6,13 @@ const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/app.js',
+    app: path.resolve(__dirname, '../src/app.js'),
   },
   plugins: [
-    new CleanWebpackPlugin(['./dist/static']),
+    new CleanWebpackPlugin([path.resolve(__dirname, '../dist/static')]),
     new HtmlWebpackPlugin({
       title: 'Der Spielplatz',
-      template: 'src/template.html',
+      template: path.resolve(__dirname, '../src/template.html'),
     }),
   ],
   module: {
@@ -56,7 +56,7 @@ module.exports = {
   output: {
     pathinfo: true,
     filename: '[name].chunk.js',
-    path: path.resolve(__dirname, 'dist/static'),
+    path: path.resolve(__dirname, '../dist/static'),
   },
   resolve: {
     plugins: [
