@@ -17,10 +17,13 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@peterp/eslint-config": "^3.0.0",
     "babel-loader": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",
@@ -37,12 +40,12 @@
     "webpack-merge": "^4.1.4"
   },
   "scripts": {
-    "start": "concurrently 'yarn start:webpack' 'yarn start:lambda'",
-    "start:webpack": "webpack-dev-server --open --config webpack.dev.js",
-    "start:lambda": "netlify-lambda serve src/functions",
+    "start": "concurrently 'yarn start:static' 'yarn start:lambda'",
+    "start:static": "webpack-dev-server --config config/webpack.dev.js",
+    "start:lambda": "netlify-lambda serve src/lambda",
     "build": "yarn build:webpack && yarn build:lambda",
-    "build:webpack": "webpack --config webpack.prod.js",
-    "build:lambda": "netlify-lambda build src/functions",
+    "build:static": "webpack --config config/webpack.prod.js",
+    "build:lambda": "netlify-lambda build src/lambda",
     "docz": "docz dev"
   }
 }

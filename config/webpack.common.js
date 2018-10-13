@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,12 +6,13 @@ const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/app.js',
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/static']),
+    new CleanWebpackPlugin(['./dist/static']),
     new HtmlWebpackPlugin({
       title: 'Der Spielplatz',
+      template: 'src/template.html',
     }),
   ],
   module: {
