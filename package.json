@@ -43,7 +43,7 @@
     "start": "concurrently 'yarn start:static' 'yarn start:lambda'",
     "start:static": "webpack-dev-server --config config/webpack.dev.js",
     "start:lambda": "netlify-lambda serve src/lambda",
-    "build": "yarn build:webpack && yarn build:lambda",
+    "build": "yarn build:static && yarn build:lambda",
     "build:static": "webpack --config config/webpack.prod.js",
     "build:lambda": "netlify-lambda build src/lambda",
     "docz": "docz dev"
