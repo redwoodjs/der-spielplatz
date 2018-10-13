@@ -46,6 +46,6 @@
     "build": "yarn build:static && yarn build:lambda",
     "build:static": "webpack --config config/webpack.prod.js",
     "build:lambda": "netlify-lambda build src/lambda",
-    "docz": "docz dev"
+    "docz": "docz dev --config config/doczrc.js"
   }
 }
