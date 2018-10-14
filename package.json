@@ -41,12 +41,12 @@
     "webpack-merge": "^4.1.4"
   },
   "scripts": {
-    "start": "concurrently 'yarn start:static' 'yarn start:lambda'",
+    "start": "concurrently 'yarn start:static' 'yarn start:functions'",
     "start:static": "webpack-dev-server --config config/webpack.dev.js",
-    "start:lambda": "netlify-lambda serve src/lambda",
-    "build": "yarn build:static && yarn build:lambda",
+    "start:functions": "netlify-lambda serve src/functions",
+    "build": "yarn build:static && yarn build:functions",
     "build:static": "webpack --config config/webpack.prod.js",
-    "build:lambda": "netlify-lambda build src/lambda",
+    "build:functions": "netlify-lambda build src/functions",
     "docz": "docz dev --config config/doczrc.js"
   }
 }
