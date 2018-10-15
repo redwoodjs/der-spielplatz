@@ -1,15 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity, PrimaryGeneratedColumn, Column, BaseEntity,
+} from 'typeorm';
 
 @Entity()
-class Post {
+class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   id = undefined;
 
   @Column('varchar')
-  name = '';
+  title = '';
 
   @Column('varchar')
-  comment = '';
+  text = '';
 }
 
 export default Post;

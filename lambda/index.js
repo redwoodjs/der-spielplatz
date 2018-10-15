@@ -1,13 +1,14 @@
 import { createConnection } from 'lambda/lib/database';
 
-// import Post from 'lambda/entities/Post';
-// import Comment from 'lambda/entities/Comment';
+import Post from 'lambda/entities/Post';
+import Comment from 'lambda/entities/Comment';
 
 createConnection()
   .then(async connection => {
-    // const post = new Post();
-    // post.title = 'this is a test';
-    // post.text = ' yo yo yo sausages';
+    const post = new Post();
+    post.title = 'this is a test';
+    post.text = ' yo yo yo sausages';
+    await post.save();
     // const comment = new Comment();
     // comment.name = 'peterp';
     // comment.comment = 'I kinda really love cheese.';
