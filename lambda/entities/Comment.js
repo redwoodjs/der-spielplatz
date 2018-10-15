@@ -1,15 +1,15 @@
-// import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-// @Entity()
-// class Comment {
-//   @PrimaryGeneratedColumn()
-//   id = undefined;
+@Entity()
+class Comment {
+  @PrimaryGeneratedColumn()
+  id = undefined;
 
-//   @Column('varchar')
-//   name = '';
+  @Column('varchar')
+  name = '';
 
-//   @Column('varchar')
-//   comment = '';
-// }
+  @Column('varchar')
+  comment = '';
+}
 
-// export default Comment;
+export default Comment;
