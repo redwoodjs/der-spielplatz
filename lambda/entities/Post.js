@@ -12,4 +12,4 @@ class Post {
   comment = '';
 }
 
-export default Comment;
+export default Post;
