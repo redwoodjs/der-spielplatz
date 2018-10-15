@@ -1,22 +1,15 @@
-import {
-  Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,
-} from 'typeorm';
-import Comment from './Comment';
+// import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
-class Post {
-  @PrimaryGeneratedColumn()
-  id = undefined;
+// @Entity()
+// class Post {
+//   @PrimaryGeneratedColumn()
+//   id = undefined;
 
-  @Column('varchar')
-  title = '';
+//   @Column('varchar')
+//   name = '';
 
-  @Column('text')
-  text = '';
+//   @Column('varchar')
+//   comment = '';
+// }
 
-  @ManyToMany(() => Comment, { cascade: true })
-  @JoinTable()
-  comments = undefined;
-}
-
-export default Post;
+// export default Comment;
