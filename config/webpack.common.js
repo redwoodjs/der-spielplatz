@@ -52,6 +52,11 @@ module.exports = {
         ],
       },
       { test: /\.flow$/, loader: 'ignore-loader' },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
     ],
   },
   output: {

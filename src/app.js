@@ -11,4 +11,7 @@ function graphQLFetcher(graphQLParams) {
   }).then(response => response.json());
 }
 
-ReactDOM.render(<GraphiQL fetcher={graphQLFetcher} />, document.body);
+ReactDOM.render(
+  <GraphiQL fetcher={graphQLFetcher} />,
+  document.getElementById('root')
+);
