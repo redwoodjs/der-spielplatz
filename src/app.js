@@ -4,14 +4,11 @@ import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 
 function graphQLFetcher(graphQLParams) {
-  return fetch(`${window.location.origin}/.netlify/functions/graphql`, {
+  return fetch(`${window.location.origin}/.netlify/functions/gping`, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(graphQLParams),
   }).then(response => response.json());
 }
 
-ReactDOM.render(
-  <GraphiQL fetcher={graphQLFetcher} />,
-  document.getElementById('root')
-);
+ReactDOM.render(<GraphiQL fetcher={graphQLFetcher} />, document.getElementById('root'));
