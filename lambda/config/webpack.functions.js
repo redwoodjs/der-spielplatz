@@ -5,7 +5,6 @@ module.exports = {
       'node-fetch$': 'node-fetch/lib/index.js',
     },
   },
-
   // https://github.com/websockets/ws/issues/1220
   module: {
     noParse: /ws/,

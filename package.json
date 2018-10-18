@@ -11,7 +11,7 @@
     "apollo-server-lambda": "^2.0.0-xrc.11",
     "dotenv": "^6.1.0",
     "graphiql": "^0.12.0",
-    "graphql": "^14.0.2",
+    "graphql": "^0.13.0",
     "isomorphic-fetch": "^2.2.1",
     "netlify-identity-widget": "^1.4.14",
     "netlify-lambda": "^1.0.2",
@@ -20,6 +20,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "styled-components": "^3.4.9",
+    "subscriptions-transport-ws": "^0.9.15",
     "typeorm": "^0.2.7"
   },
   "devDependencies": {
