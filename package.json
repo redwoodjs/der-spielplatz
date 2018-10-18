@@ -14,7 +14,7 @@
     "graphql": "^0.13.1",
     "isomorphic-fetch": "^2.2.1",
     "netlify-identity-widget": "^1.4.14",
-    "netlify-lambda": "^0.4.0",
+    "netlify-lambda": "^1.0.2",
     "pg": "^7.5.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
