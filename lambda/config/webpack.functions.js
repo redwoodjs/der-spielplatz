@@ -6,8 +6,8 @@ module.exports = {
     },
   },
   // https://github.com/websockets/ws/issues/1220
-  module: {
-    noParse: /ws/,
-  },
-  externals: /ws/,
+  // module: {
+  //   noParse: /ws/,
+  // },
+  externals: /bufferutil|utf-8-validate/,
 };
