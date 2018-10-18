@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "apollo-server-lambda": "^2.1.0",
+    "apollo-server-lambda": "^2.0.0-xrc.11",
     "dotenv": "^6.1.0",
     "graphiql": "^0.12.0",
-    "graphql": "^0.13.1",
+    "graphql": "^14.0.2",
     "isomorphic-fetch": "^2.2.1",
     "netlify-identity-widget": "^1.4.14",
     "netlify-lambda": "^1.0.2",
