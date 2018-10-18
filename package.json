@@ -56,10 +56,10 @@
   "scripts": {
     "start": "concurrently 'yarn start:static' 'yarn start:lambda'",
     "start:static": "webpack-dev-server --config config/webpack.dev.js",
-    "start:lambda": "netlify-lambda serve lambda/functions",
+    "start:lambda": "netlify-lambda -c lambda/config/webpack.functions.js serve lambda/functions",
     "build": "yarn build:static && yarn build:lambda",
     "build:static": "webpack --config config/webpack.prod.js",
-    "build:lambda": "netlify-lambda build lambda/functions",
+    "build:lambda": "netlify-lambda -c lambda/config/webpack.functions.js build lambda/functions",
     "docz": "docz dev --config config/doczrc.js",
     "test:typeorm": "yarn nodemon --exec babel-node lambda/index.js"
   }
