@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
-import { Post } from 'lambda/entities/Post';
 import { createConnection } from 'lambda/lib/database';
+import Post from 'lambda/entities/Post';
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
