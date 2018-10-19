@@ -1,7 +1,12 @@
-node_modules
-dist
+api/node_modules
+api/dist
+
+web/node_modules
+web/dist
+
 yarn-error.log
 
 .docz
-.env
+*/.env
 *.sqlite
+.vscode

@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
-import dbConfig from 'lambda/config/database';
+import dbConfig from 'src/lib/database';
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
