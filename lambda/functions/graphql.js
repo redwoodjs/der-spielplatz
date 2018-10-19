@@ -1,9 +1,8 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
+import dbConfig from 'lambda/config/database';
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize(
-  'postgres://root:yzzCQ6e&3m>DDA@chainsaw.cwptmkqzxp8y.us-west-2.rds.amazonaws.com:5432/chainsaw'
-);
+const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 
 const Post = sequelize.define('post', {
   id: {
