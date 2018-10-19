@@ -19,15 +19,20 @@ const Post = sequelize.define('post', {
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
+  type Post {
+    title: String!
+    text: String!
+  }
+
   type Query {
-    hello: String
+    posts: [Post!]!
   }
 `;
 
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    hello: () => Post.findById(1).then(user => user.title),
+    posts: () => Post.findAll().then(posts => posts),
   },
 };
 
