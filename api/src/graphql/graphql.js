@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server-lambda';
-import { Category, Post, Comment } from 'src/models';
+import { Category, Post } from 'src/models';
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
@@ -17,9 +17,18 @@ export const typeDefs = gql`
     category: Category!
   }
 
+  input PostInput {
+    title: String!
+    text: String!
+  }
+
   type Query {
     category(id: ID!): Category
     posts: [Post!]!
+  }
+
+  type Mutation {
+    postCreate(title: String!, text: String!): Post
   }
 `;
 
@@ -28,6 +37,13 @@ export const resolvers = {
   Query: {
     category: (_, { id }) => Category.findById(id),
     posts: () => Post.findAll().then(posts => posts),
+  },
+
+  Mutation: {
+    postCreate: (_, args) => Post.create(args).then(out => {
+      console.log(out);
+      out[0];
+    }),
   },
 
   /* relations */
