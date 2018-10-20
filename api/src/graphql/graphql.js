@@ -1,44 +1,37 @@
-import { ApolloServer, gql } from 'apollo-server-lambda';
-import dbConfig from 'src/lib/database';
-import { Sequelize } from 'sequelize';
-
-const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
-
-const Post = sequelize.define('post', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-  },
-  title: {
-    type: Sequelize.STRING,
-  },
-  text: {
-    type: Sequelize.STRING,
-  },
-});
+import { gql } from 'apollo-server-lambda';
+import { Category, Post, Comment } from 'src/models';
 
 // Construct a schema, using GraphQL schema language
-const typeDefs = gql`
+export const typeDefs = gql`
+  type Category {
+    id: ID!
+    name: String!
+    slug: String!
+    posts: [Post]
+  }
+
   type Post {
+    id: ID!
     title: String!
     text: String!
+    category: Category!
   }
 
   type Query {
+    category(id: ID!): Category
     posts: [Post!]!
   }
 `;
 
 // Provide resolver functions for your schema fields
-const resolvers = {
+export const resolvers = {
   Query: {
-    posts: () => Post.findAll().then(posts => posts),
+    category: (_, { id }) => Category.findById(id),
+    posts: () => Post.all(),
+  },
+
+  /* relations */
+  Category: {
+    posts: category => category.getPosts(),
   },
 };
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
-
-exports.handler = server.createHandler();

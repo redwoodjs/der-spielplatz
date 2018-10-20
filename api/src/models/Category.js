@@ -7,18 +7,18 @@ export const schema = {
     type: Sequelize.INTEGER,
     primaryKey: true,
   },
-  title: {
+  name: {
     type: Sequelize.STRING,
   },
-  text: {
+  slug: {
     type: Sequelize.STRING,
+    unique: true,
   },
 };
 
-const Post = database.define('post', schema);
-Post.associate = models => {
-  Post.belongsTo(models.Category);
-  Post.hasMany(models.Comment);
+const Category = database.define('category', schema);
+Category.associate = models => {
+  Category.hasMany(models.Category);
 };
 
-export default Post;
+export default Category;

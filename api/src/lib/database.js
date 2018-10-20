@@ -1,21 +1,24 @@
+import Sequelize from 'sequelize';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {
-  DB_DIALECT,
-  DB_HOST,
-  DB_PORT,
-  DB_USERNAME,
-  DB_PASSWORD,
-  DB_DATABASE,
+  DB_DATABASE, DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DIALECT,
 } = process.env;
 
-export default {
-  dialect: DB_DIALECT,
-  host: DB_HOST,
-  port: DB_PORT,
-  username: DB_USERNAME,
-  password: DB_PASSWORD,
-  database: DB_DATABASE,
-};
+const sequelize = new Sequelize('database', 'username', 'password', {
+  dialect: 'sqlite',
+  storage: 'test.sqlite',
+});
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+export default sequelize;
