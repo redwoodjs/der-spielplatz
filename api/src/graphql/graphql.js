@@ -27,7 +27,7 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     category: (_, { id }) => Category.findById(id),
-    posts: () => Post.all(),
+    posts: () => Post.findAll().then(posts => posts),
   },
 
   /* relations */
