@@ -1,24 +1,26 @@
-import Sequelize from 'sequelize';
+import { Model } from 'objection';
+import Category from 'src/models/Category';
 
-import database from 'src/lib/database';
+export default class Post extends Model {
+  static tableName = 'posts';
 
-export const schema = {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-  },
-  title: {
-    type: Sequelize.STRING,
-  },
-  text: {
-    type: Sequelize.STRING,
-  },
-};
+  $beforeInsert() {
+    this.createdAt = new Date().toISOString();
+    this.updatedAt = new Date().toISOString();
+  }
 
-const Post = database.define('post', schema);
-Post.associate = models => {
-  Post.belongsTo(models.Category);
-  Post.hasMany(models.Comment);
-};
+  $beforeUpdate() {
+    this.updatedAt = new Date().toISOString();
+  }
 
-export default Post;
+  static relationMappings = {
+    category: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: Category,
+      join: {
+        from: 'posts.categoryId',
+        to: 'categories.id',
+      },
+    },
+  };
+}

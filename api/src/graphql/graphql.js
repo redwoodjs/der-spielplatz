@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-lambda';
-import { Category, Post } from 'src/models';
+import Post from 'src/models/Post';
+import Category from '../models/Category';
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
@@ -7,14 +8,19 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     slug: String!
-    posts: [Post]
+    posts: [Post!]!
+  }
+
+  input CategoryInput {
+    name: String!
+    slug: String!
   }
 
   type Post {
     id: ID!
     title: String!
     text: String!
-    category: Category!
+    category: Category
   }
 
   input PostInput {
@@ -28,26 +34,38 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    postCreate(title: String!, text: String!): Post
+    postCreate(post: PostInput!): Post
+    categoryCreate(category: CategoryInput!): Category
+    postAddCategory(postId: ID!, categoryId: ID!): Post
   }
 `;
 
 // Provide resolver functions for your schema fields
 export const resolvers = {
   Query: {
-    category: (_, { id }) => Category.findById(id),
-    posts: () => Post.findAll().then(posts => posts),
+    category: (_, args) => {
+      return Category.query()
+        .findById(args.id)
+        .then(cat => cat);
+    },
+    posts: () => {
+      return Post.query()
+        .eager('category')
+        .then(posts => posts);
+    },
   },
 
   Mutation: {
-    postCreate: (_, args) => Post.create(args).then(out => {
-      console.log(out);
-      out[0];
-    }),
-  },
-
-  /* relations */
-  Category: {
-    posts: category => category.getPosts(),
+    postCreate: (_, args) => {
+      return Post.query().insert(args.post).then(post => post);
+    },
+    categoryCreate: (_, args) => {
+      return Category.query().insert(args.category).then(cat => cat);
+    },
+    postAddCategory: (_, args) => {
+      return Post.query()
+        .patchAndFetchById(args.postId, { categoryId: args.categoryId })
+        .then(post => post);
+    },
   },
 };
