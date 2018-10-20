@@ -1,5 +1,4 @@
 import { Model } from 'objection';
-import Post from 'src/models/Post';
 
 export default class Category extends Model {
   static tableName = 'categories';
@@ -16,7 +15,7 @@ export default class Category extends Model {
   static relationMappings = {
     posts: {
       relation: Model.HasManyRelation,
-      modelClass: Post,
+      modelClass: `${__dirname}/Post`,
       join: {
         from: 'categories.id',
         to: 'posts.categoryId',

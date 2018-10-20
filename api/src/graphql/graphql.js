@@ -45,6 +45,7 @@ export const resolvers = {
   Query: {
     category: (_, args) => {
       return Category.query()
+        .eager('posts')
         .findById(args.id)
         .then(cat => cat);
     },
