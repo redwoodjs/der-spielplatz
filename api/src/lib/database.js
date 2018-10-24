@@ -1,6 +1,6 @@
-import Knex from 'knex';
-import { Model } from 'objection';
-// import dotenv from 'dotenv';
+import Knex from "knex";
+import { Model } from "objection";
+//import sqlite3 from "sqlite3";
 
 const Database = {
   init: () => {
@@ -11,15 +11,15 @@ const Database = {
     // } = process.env;
 
     const knex = Knex({
-      client: 'sqlite3',
+      client: "sqlite3",
       useNullAsDefault: true,
       connection: {
-        filename: 'test.sqlite',
-      },
+        filename: "test.sqlite"
+      }
     });
 
     Model.knex(knex);
-  },
+  }
 };
 
 export default Database;

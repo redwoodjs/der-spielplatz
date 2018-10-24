@@ -1,8 +1,5 @@
-api/node_modules
-api/dist
-
-web/node_modules
-web/dist
+node_modules
+dist
 
 yarn-error.log
 
