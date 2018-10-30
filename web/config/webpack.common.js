@@ -9,7 +9,8 @@ module.exports = {
     app: path.resolve(__dirname, "../src/App.js")
   },
   plugins: [
-    new CleanWebpackPlugin([path.resolve(__dirname, "../dist/static")])
+    new CleanWebpackPlugin([path.resolve(__dirname, "../dist")]),
+    new HtmlWebpackPlugin()
   ],
   module: {
     rules: [
@@ -52,7 +53,7 @@ module.exports = {
   output: {
     pathinfo: true,
     filename: "[name].chunk.js",
-    path: path.resolve(__dirname, "../dist/static")
+    path: path.resolve(__dirname, "../dist")
   },
   resolve: {
     plugins: [
