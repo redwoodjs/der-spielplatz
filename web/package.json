@@ -1,16 +1,37 @@
 {
-  "name": "der-spielplatz-web",
+  "name": "web",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/peterp/der-spielplatz.git"
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "styled-components": "^3.4.9"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
-    "start": "",
-    "build": "",
-    "docz": "docz dev --config config/doczrc.js"
+    "start": "webpack-dev-server --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@peterp/eslint-config": "^3.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "directory-named-webpack-plugin": "^4.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
   }
 }
