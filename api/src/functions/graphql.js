@@ -2,8 +2,8 @@ import { ApolloServer, gql } from "apollo-server-lambda";
 import Post from "src/models/Post";
 import Category from "../models/Category";
 
-import Database from "src/lib/database";
-Database.init();
+import database from "src/lib/database";
+database.init();
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`

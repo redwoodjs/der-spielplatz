@@ -1,25 +1,26 @@
 import Knex from "knex";
 import { Model } from "objection";
-//import sqlite3 from "sqlite3";
+import dotenv from "dotenv";
 
-const Database = {
-  init: () => {
-    // dotenv.config();
+const init = () => {
+  dotenv.config();
+  const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;
 
-    // const {
-    //   DB_DATABASE, DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DIALECT,
-    // } = process.env;
+  const knex = Knex({
+    client: "pg",
+    useNullAsDefault: true,
+    connection: {
+      host: DB_HOST,
+      port: DB_PORT,
+      user: DB_USER,
+      password: DB_PASSWORD,
+      database: DB_DATABASE
+    }
+  });
 
-    const knex = Knex({
-      client: "sqlite3",
-      useNullAsDefault: true,
-      connection: {
-        filename: "test.sqlite"
-      }
-    });
-
-    Model.knex(knex);
-  }
+  Model.knex(knex);
 };
 
-export default Database;
+export default {
+  init
+};
