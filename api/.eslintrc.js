@@ -1,9 +1,9 @@
 module.exports = {
-  extends: '@peterp/eslint-config',
+  extends: "@peterp/eslint-config",
   rules: {
-    indent: ['error', 2],
+    indent: ["error", 2]
   },
   env: {
-    browser: true,
-  },
+    node: true
+  }
 };

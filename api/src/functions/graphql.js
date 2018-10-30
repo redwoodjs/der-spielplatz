@@ -1,6 +1,9 @@
-import { gql } from 'apollo-server-lambda';
-import Post from 'src/models/Post';
-import Category from '../models/Category';
+import { ApolloServer, gql } from "apollo-server-lambda";
+import Post from "src/models/Post";
+import Category from "../models/Category";
+
+import database from "src/lib/database";
+database.init();
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
@@ -45,28 +48,39 @@ export const resolvers = {
   Query: {
     category: (_, args) => {
       return Category.query()
-        .eager('posts')
+        .eager("posts")
         .findById(args.id)
         .then(cat => cat);
     },
     posts: () => {
       return Post.query()
-        .eager('category')
+        .eager("category")
         .then(posts => posts);
-    },
+    }
   },
 
   Mutation: {
     postCreate: (_, args) => {
-      return Post.query().insert(args.post).then(post => post);
+      return Post.query()
+        .insert(args.post)
+        .then(post => post);
     },
     categoryCreate: (_, args) => {
-      return Category.query().insert(args.category).then(cat => cat);
+      return Category.query()
+        .insert(args.category)
+        .then(cat => cat);
     },
     postAddCategory: (_, args) => {
       return Post.query()
         .patchAndFetchById(args.postId, { categoryId: args.categoryId })
         .then(post => post);
-    },
-  },
+    }
+  }
 };
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
+
+export const handler = server.createHandler();
