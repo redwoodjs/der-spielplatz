@@ -5,6 +5,7 @@
     "web"
   ],
   "scripts": {
-    "start": "yarn workspace api start & yarn workspace web start"
+    "start": "yarn workspace api start & yarn workspace web start",
+    "build": "yarn workspace api build && yarn workspace web build"
   }
 }
