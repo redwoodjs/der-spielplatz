@@ -1,8 +1,8 @@
-import { ApolloServer, gql } from "apollo-server-lambda";
-import Post from "src/models/Post";
-import Category from "../models/Category";
+import { ApolloServer, gql } from 'apollo-server-lambda';
 
-import database from "src/lib/database";
+import database from 'src/lib/database';
+import { Post, Category } from 'src/models';
+
 database.init();
 
 // Construct a schema, using GraphQL schema language
@@ -11,7 +11,7 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     slug: String!
-    posts: [Post!]!
+    posts: [Post]
   }
 
   input CategoryInput {
@@ -32,8 +32,8 @@ export const typeDefs = gql`
   }
 
   type Query {
+    categories: [Category]
     category(id: ID!): Category
-    posts: [Post!]!
   }
 
   type Mutation {
@@ -43,44 +43,35 @@ export const typeDefs = gql`
   }
 `;
 
-// Provide resolver functions for your schema fields
+// TODO: Checkout https://github.com/vincit/objection-graphql#onquery
 export const resolvers = {
   Query: {
-    category: (_, args) => {
-      return Category.query()
-        .eager("posts")
-        .findById(args.id)
-        .then(cat => cat);
-    },
-    posts: () => {
-      return Post.query()
-        .eager("category")
-        .then(posts => posts);
-    }
+    categories: () => Category.query().eager('posts'),
+    category: (_, { id }) => Category.query()
+      .eager('posts')
+      .findById(id),
   },
 
   Mutation: {
     postCreate: (_, args) => {
-      return Post.query()
-        .insert(args.post)
-        .then(post => post);
+      return Post.query().insert(args.post);
     },
     categoryCreate: (_, args) => {
-      return Category.query()
-        .insert(args.category)
-        .then(cat => cat);
+      return Category.query().insert(args.category);
     },
     postAddCategory: (_, args) => {
-      return Post.query()
-        .patchAndFetchById(args.postId, { categoryId: args.categoryId })
-        .then(post => post);
-    }
-  }
+      return Post.query().patchAndFetchById(args.postId, { categoryId: args.categoryId });
+    },
+  },
+
+  Category: {
+    posts: category => category.posts,
+  },
 };
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 export const handler = server.createHandler();

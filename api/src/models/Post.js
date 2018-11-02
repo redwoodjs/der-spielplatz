@@ -1,5 +1,18 @@
 import { Model } from 'objection';
 
+export const schema = {
+  type: 'object',
+  required: ['title', 'text', 'categoryId'],
+
+  properties: {
+    id: { type: 'integer' },
+    title: { type: 'string' },
+    text: { type: 'string' },
+    age: { type: 'number' },
+    category: { type: 'object' },
+  },
+};
+
 export default class Post extends Model {
   static tableName = 'posts';
 
@@ -12,14 +25,20 @@ export default class Post extends Model {
     this.updatedAt = new Date().toISOString();
   }
 
-  static relationMappings = {
-    category: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: `${__dirname}/Category`,
-      join: {
-        from: 'posts.categoryId',
-        to: 'categories.id',
+  static get relationMappings() {
+    return {
+      category: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: this.allModels().Category,
+        join: {
+          from: 'posts.categoryId',
+          to: 'categories.id',
+        },
       },
-    },
-  };
+    };
+  }
+
+  static get jsonSchema() {
+    return schema;
+  }
 }
