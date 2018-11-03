@@ -1,7 +1,9 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
 
 import database from 'src/lib/database';
-import { Post, Category } from 'src/models';
+
+import Category from 'src/models/Category';
+import Post from 'src/models/Post';
 
 database.init();
 
