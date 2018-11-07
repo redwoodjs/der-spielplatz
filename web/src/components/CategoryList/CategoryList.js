@@ -25,9 +25,10 @@ const CategoryList = () => (
         );
       }
       if (data) {
-        const cats = data.categories.map(cat => <li>{cat.name}</li>);
+        const cats = data.categories.map(cat => <li key={cat.slug}>{cat.name}</li>);
         return <ul>{cats}</ul>;
       }
+      return null;
     }}
   </Query>
 );
