@@ -7,6 +7,8 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink, from, Observable } from 'apollo-link';
 
+import Main from 'src/components/Main';
+
 class AuthLink extends ApolloLink {
   handleLogout = operation => {
     const { authExpired, response } = operation.getContext();
@@ -67,9 +69,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <div>
-      <h2>My first Apollo app</h2>
-    </div>
+    <Main />
   </ApolloProvider>
 );
 
