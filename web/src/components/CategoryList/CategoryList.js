@@ -2,6 +2,21 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
+const renderPosts = posts => {
+  const postList = posts.map(post => <li key={post.id}>{post.title}</li>);
+  return <ul>{postList}</ul>;
+};
+
+const renderCategories = categories => {
+  const cats = categories.map(cat => (
+    <li key={cat.slug}>
+      {cat.name}
+      {renderPosts(cat.posts)}
+    </li>
+  ));
+  return <ul>{cats}</ul>;
+};
+
 const CategoryList = () => (
   <Query
     query={gql`
@@ -10,6 +25,10 @@ const CategoryList = () => (
           id
           name
           slug
+          posts {
+            id
+            title
+          }
         }
       }
     `}
@@ -25,8 +44,7 @@ const CategoryList = () => (
         );
       }
       if (data) {
-        const cats = data.categories.map(cat => <li key={cat.slug}>{cat.name}</li>);
-        return <ul>{cats}</ul>;
+        return renderCategories(data.categories);
       }
       return null;
     }}

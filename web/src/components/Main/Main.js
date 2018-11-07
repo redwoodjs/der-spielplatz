@@ -5,7 +5,7 @@ import CategoryList from 'src/components/CategoryList';
 const Main = () => {
   return (
     <div>
-      <div>Main</div>
+      <div>All Posts</div>
       <CategoryList />
     </div>
   );
