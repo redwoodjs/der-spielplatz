@@ -30,10 +30,7 @@ const CategoryListQuery = () => (
           </pre>
         );
       }
-      if (data) {
-        return <CategoryList categories={data.categories} />;
-      }
-      return null;
+      return <CategoryList categories={data.categories} />;
     }}
   </Query>
 );
