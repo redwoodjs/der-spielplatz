@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import Header from 'src/components/Header';
 import CategoryList from 'src/components/CategoryList';
 
 const CategoryListQuery = () => (
@@ -37,8 +38,11 @@ const CategoryListQuery = () => (
 
 const CategoryListPage = () => (
   <div>
-    <div>All Posts</div>
-    <CategoryListQuery />
+    <Header />
+    <div>
+      <div>All Posts</div>
+      <CategoryListQuery />
+    </div>
   </div>
 );
 
