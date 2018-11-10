@@ -6,5 +6,5 @@
 [context.production]
   environment = { YARN_VERSION = "1.12.1" }
 
-[context.deploy-preview.environment]
+[context.deploy-preview]
   environment = { YARN_VERSION = "1.12.1" }
