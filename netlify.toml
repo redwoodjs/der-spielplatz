@@ -2,3 +2,6 @@
   command = "yarn build"
   functions = "api/dist"
   publish = "web/dist"
+
+[context.production]
+  environment = { YARN_VERSION = "1.12.1" }
