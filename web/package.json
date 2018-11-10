@@ -11,13 +11,15 @@
     "apollo-link": "^1.2.3",
     "apollo-link-error": "^1.1.1",
     "apollo-link-http": "^1.5.5",
+    "directory-named-webpack-plugin": "^4.0.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
-    "styled-components": "^3.4.9"
+    "styled-components": "^3.4.9",
+    "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -31,7 +33,6 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
-    "directory-named-webpack-plugin": "^4.0.0",
     "docz": "^0.12.9",
     "docz-theme-default": "^0.12.9",
     "file-loader": "^2.0.0",
@@ -39,8 +40,7 @@
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.9",
-    "webpack-merge": "^4.1.4"
+    "webpack-dev-server": "^3.1.9"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",
