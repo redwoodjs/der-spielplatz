@@ -21,11 +21,11 @@ const CategoryList = props => renderCategories(props.categories);
 CategoryList.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       posts: PropTypes.arrayOf(
         PropTypes.shape({
-          id: PropTypes.number.isRequired,
+          id: PropTypes.string.isRequired,
           title: PropTypes.string.isRequired,
         })
       ),
