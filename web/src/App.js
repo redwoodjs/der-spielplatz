@@ -5,17 +5,20 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import client from 'src/lib/apolloGraphQLClient';
 import Header from 'src/components/Header';
-import Main from 'src/components/Main';
 
-const Admin = () => <div>I am the admin.</div>;
+import HomePage from 'src/pages/HomePage';
+import CategoryPage from 'src/pages/CategoryPage';
+import PostPage from 'src/pages/PostPage';
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Header />
     <Router>
       <>
-        <Route path="/" exact component={Main} />
-        <Route path="/admin" component={Admin} />
+        <Header />
+
+        <Route path="/:categorySlug/:postSlug" exact component={PostPage} />
+        <Route path="/:categorySlug" exact component={CategoryPage} />
+        <Route path="/" exact component={HomePage} />
       </>
     </Router>
   </ApolloProvider>

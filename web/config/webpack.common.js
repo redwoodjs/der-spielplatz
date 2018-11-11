@@ -10,7 +10,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin([path.resolve(__dirname, '../dist')]),
-    new HtmlWebpackPlugin({ template: './src/template.html' }),
+    new HtmlWebpackPlugin({
+      template: './src/template.html',
+    }),
   ],
   module: {
     rules: [
@@ -51,6 +53,7 @@ module.exports = {
     ],
   },
   output: {
+    publicPath: '/',
     pathinfo: true,
     filename: '[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
