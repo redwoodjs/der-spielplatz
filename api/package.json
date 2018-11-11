@@ -21,6 +21,7 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
@@ -28,8 +29,8 @@
     "babel-loader": "^8.0.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "eslint": "^5.8.0",
-    "nodemon": "^1.18.5",
     "netlify-lambda": "^0.4.0",
+    "nodemon": "^1.18.5",
     "prettier-eslint": "^8.8.2"
   },
   "scripts": {
