@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Link from 'src/components/Link';
+
 const renderPosts = posts => {
   const postList = posts.map(post => <li key={post.id}>{post.title}</li>);
   return <ul>{postList}</ul>;
@@ -9,7 +11,7 @@ const renderPosts = posts => {
 const renderCategories = categories => {
   const cats = categories.map(cat => (
     <li key={cat.id}>
-      {cat.name}
+      <Link to={`/${cat.slug}`}>{cat.name}</Link>
       {renderPosts(cat.posts)}
     </li>
   ));

@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Header = () => <div>My Blog</div>;
+import Link from 'src/components/Link';
+
+const Header = () => (
+  <h1>
+    <Link to="/">My Blog</Link>
+  </h1>
+);
 
 export default Header;
