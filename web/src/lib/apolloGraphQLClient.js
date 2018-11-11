@@ -37,7 +37,6 @@ class AuthLink extends ApolloLink {
   }
 }
 
-
 const error = onError(({ operation, networkError }) => {
   const { response } = operation.getContext();
   // this is when you have mixed data + errors
@@ -54,7 +53,7 @@ const error = onError(({ operation, networkError }) => {
 
 // TODO: Grab this from configuration file.
 const http = new HttpLink({
-  uri: '.netlify/functions/graphql',
+  uri: '/.netlify/functions/graphql',
 });
 
 const auth = new AuthLink();

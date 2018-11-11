@@ -1,0 +1,24 @@
+---
+name: CategoryList
+---
+
+import { Playground, PropsTable } from "docz";
+import CategoryList from "./CategoryList.js";
+
+# CategoryList
+
+CategoryList is a list of categories and the blog posts within, all in a big list.
+
+## Properties
+
+<PropsTable of={CategoryList} />
+
+## Basic Usage
+
+<Playground>
+  <CategoryList
+    categories={[
+      { id: "1", name: "Cars", posts: [{ id: "1", title: "Dodge Viper" }] }
+    ]}
+  />
+</Playground>

@@ -1,14 +1,9 @@
 import React from 'react';
 
-import CategoryList from 'src/components/CategoryList';
+import CategoryListPage from 'src/components/CategoryListPage';
 
 const Main = () => {
-  return (
-    <div>
-      <div>All Posts</div>
-      <CategoryList />
-    </div>
-  );
+  return <CategoryListPage />;
 };
 
 export default Main;
