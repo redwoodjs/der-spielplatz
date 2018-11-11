@@ -37,6 +37,7 @@ export const typeDefs = gql`
   }
 
   type Query {
+    post(slug: String!): Post
     categories: [Category]
     category(slug: String!): Category
   }
@@ -51,6 +52,9 @@ export const typeDefs = gql`
 // TODO: Checkout https://github.com/vincit/objection-graphql#onquery
 export const resolvers = {
   Query: {
+    post: (_, { slug }) => Post.query()
+      .eager('category')
+      .findOne({ slug }),
     categories: () => Category.query().eager('posts'),
     category: (_, { slug }) => Category.query()
       .eager('posts')

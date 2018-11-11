@@ -42,6 +42,8 @@ const CategoryPage = ({
           return (
             <>
               <h2>
+                Articles in
+                {' '}
                 <Link to={`/${categorySlug}`}>{category.name}</Link>
               </h2>
               <ol>
@@ -51,7 +53,6 @@ const CategoryPage = ({
                       <Link to={`/${categorySlug}/${slug}`}>
                         <h3>{title}</h3>
                       </Link>
-                      <hr />
                     </li>
                   );
                 })}

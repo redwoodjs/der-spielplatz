@@ -8,20 +8,17 @@ import Header from 'src/components/Header';
 
 import HomePage from 'src/pages/HomePage';
 import CategoryPage from 'src/pages/CategoryPage';
+import PostPage from 'src/pages/PostPage';
 
-const Article = () => {
-  return null;
-};
-
-// TODO: Add Article
 const App = () => (
   <ApolloProvider client={client}>
     <Router>
       <>
         <Header />
+
+        <Route path="/:categorySlug/:postSlug" exact component={PostPage} />
+        <Route path="/:categorySlug" exact component={CategoryPage} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/:categorySlug/" component={CategoryPage} />
-        <Route path="/:categorySlug/:articleSlug" component={Article} />
       </>
     </Router>
   </ApolloProvider>
