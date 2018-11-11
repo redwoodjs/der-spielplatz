@@ -4,18 +4,14 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import client from 'src/lib/apolloGraphQLClient';
+import Header from 'src/components/Header';
 import Main from 'src/components/Main';
 
-const Admin = () => <h2>I'm the admin son.</h2>;
+const Admin = () => <div>I am the admin.</div>;
 
 const App = () => (
   <ApolloProvider client={client}>
-    <div>
-      <a href="/">Categories</a>
-      {' | '}
-      <a href="/admin">Admin</a>
-      {' | '}
-    </div>
+    <Header />
     <Router>
       <>
         <Route path="/" exact component={Main} />
