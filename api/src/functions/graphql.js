@@ -38,7 +38,7 @@ export const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    category(id: ID!): Category
+    category(slug: String!): Category
   }
 
   type Mutation {
@@ -52,9 +52,9 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     categories: () => Category.query().eager('posts'),
-    category: (_, { id }) => Category.query()
+    category: (_, { slug }) => Category.query()
       .eager('posts')
-      .findById(id),
+      .findOne({ slug }),
   },
 
   Mutation: {
