@@ -23,6 +23,7 @@ export const typeDefs = gql`
 
   type Post {
     id: ID!
+    slug: String!
     title: String!
     text: String!
     category: Category
@@ -30,7 +31,9 @@ export const typeDefs = gql`
 
   input PostInput {
     title: String!
+    slug: String!
     text: String!
+    categoryId: ID!
   }
 
   type Query {
