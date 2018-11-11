@@ -1,6 +1,6 @@
 # Der Spielplatz
 
-## Getting started
+## Developer Setup
 
 ```terminal
 yarn install
