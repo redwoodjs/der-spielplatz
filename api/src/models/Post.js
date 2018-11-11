@@ -2,7 +2,7 @@ import { Model } from 'objection';
 
 export const schema = {
   type: 'object',
-  required: ['title', 'text', 'categoryId'],
+  required: ['title', 'slug', 'text', 'categoryId'],
 
   properties: {
     id: { type: 'integer' },
