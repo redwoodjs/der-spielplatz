@@ -10,6 +10,8 @@ import HomePage from 'src/pages/HomePage';
 import CategoryPage from 'src/pages/CategoryPage';
 import PostPage from 'src/pages/PostPage';
 
+import './global.css';
+
 const App = () => (
   <ApolloProvider client={client}>
     <Router>
