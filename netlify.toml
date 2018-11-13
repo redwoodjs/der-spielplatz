@@ -4,7 +4,7 @@
   publish = "web/dist"
 
 [context.production]
-  environment = { YARN_VERSION = "1.12.1" }
+  environment = { YARN_VERSION = "1.12.1", HAMMER_ENV = "production" }
 
 [context.deploy-preview]
-  environment = { YARN_VERSION = "1.12.1" }
+  environment = { YARN_VERSION = "1.12.1", HAMMER_ENV = "production" }

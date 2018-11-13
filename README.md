@@ -16,11 +16,50 @@ This app currently uses an AWS RDS PostgresQL server (Tom's account).
 
 ## Development
 
-We use Yarn as our package manager. To get everything going, just do this in the root
-directory:
+### PostgresQL
+
+Install PostgresQL locally with:
+
+```terminal
+brew install postgresql
+brew services start postgresql
+createdb derspielplatz
+```
+
+### Env
+
+You'll need to create an `api/.env` file to specify database connection info. If you
+followed the commands above, you can simply use the following:
+
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=derspielplatz
+```
+
+If you set a user or password on your database, you'll need to fill those in as
+appropriate.
+
+## Setup
+
+We use Yarn as our package manager. To get the dependencies installed, just do this
+in the root directory:
 
 ```terminal
 yarn install
+```
+
+## Migrations
+
+```terminal
+yarn run knex migrate:latest
+```
+
+## Fire it up!
+
+```terminal
 yarn start
 ```
 

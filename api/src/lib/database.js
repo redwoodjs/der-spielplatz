@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import Knex from 'knex';
 import { Model } from 'objection';
 import dotenv from 'dotenv';
@@ -18,23 +20,17 @@ const addAllModelsForRelations = requires => {
 
 export const init = () => {
   dotenv.config();
-  const {
-    DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE,
-  } = process.env;
 
-  const knex = Knex({
-    client: 'pg',
-    useNullAsDefault: true,
-    connection: {
-      host: DB_HOST,
-      port: DB_PORT,
-      user: DB_USER,
-      password: DB_PASSWORD,
-      database: DB_DATABASE,
-    },
-  });
+  const { HAMMER_ENV } = process.env;
+  let connectionDetails;
 
-  Model.knex(knex);
+  if (HAMMER_ENV === 'production') {
+    connectionDetails = require('../../config/database.prod.js');
+  } else {
+    connectionDetails = require('../../config/database.dev.js');
+  }
+
+  Model.knex(Knex(connectionDetails));
 
   addAllModelsForRelations(require.context('../models', false, /\.js$/));
 };

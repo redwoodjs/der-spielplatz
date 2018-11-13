@@ -1,16 +1,15 @@
+/* eslint-disable global-require, no-console */
+
 require('dotenv').load({ path: './.env' });
 
-const {
-  DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE,
-} = process.env;
+const { HAMMER_ENV } = process.env;
+let connection;
 
-const connection = {
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_DATABASE,
-};
+if (HAMMER_ENV === 'production') {
+  connection = require('./config/database.prod.js');
+} else {
+  connection = require('./config/database.dev.js');
+}
 
 console.log('Using connection info:');
 console.log({
