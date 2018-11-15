@@ -3,13 +3,15 @@
 require('dotenv').load({ path: './.env' });
 
 const { HAMMER_ENV } = process.env;
-let connection;
+let details;
 
 if (HAMMER_ENV === 'production') {
-  connection = require('./config/database.prod.js');
+  details = require('./config/database.prod.js');
 } else {
-  connection = require('./config/database.dev.js');
+  details = require('./config/database.dev.js');
 }
+
+const { connection } = details;
 
 console.log('Using connection info:');
 console.log({
@@ -17,7 +19,4 @@ console.log({
   password: '*****',
 });
 
-module.exports = {
-  client: 'pg',
-  connection,
-};
+module.exports = details;
