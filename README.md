@@ -54,7 +54,7 @@ yarn install
 ## Migrations
 
 ```terminal
-yarn run knex migrate:latest
+yarn migrate
 ```
 
 ## Fire it up!

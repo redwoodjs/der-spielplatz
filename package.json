@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "start": "yarn workspace api start & yarn workspace web start",
-    "build": "yarn workspace api build && yarn workspace web build"
+    "build": "yarn workspace api build && yarn workspace web build",
+    "migrate": "yarn workspace api run knex migrate:latest"
   }
 }
