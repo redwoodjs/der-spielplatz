@@ -47,7 +47,7 @@ const CategoryPage = ({
                 <Link to={`/${categorySlug}`}>{category.name}</Link>
               </h2>
               <ol>
-                {category.posts.map(({ slug, title, text }) => {
+                {category.posts.map(({ slug, title }) => {
                   return (
                     <li key={slug}>
                       <Link to={`/${categorySlug}/${slug}`}>

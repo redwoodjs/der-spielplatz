@@ -1,60 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
-import Link from 'src/components/Link';
+import PostQuery from 'src/components/PostQuery';
 
 const PostPage = ({
   match: {
-    params: { categorySlug, postSlug },
+    params: { postSlug },
   },
 }) => {
   return (
     <div>
-      <Query
-        query={gql`
-          query Post($slug: String!) {
-            post(slug: $slug) {
-              title
-              slug
-              text
-              category {
-                name
-                slug
-              }
-            }
-          }
-        `}
-        variables={{ slug: postSlug }}
-      >
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) {
-            return (
-              <pre>
-                <code>{error && error.graphQLErrors[0] && error.graphQLErrors[0].message}</code>
-              </pre>
-            );
-          }
-
-          const { title, text, category } = data.post;
-
-          return (
-            <>
-              <h2>
-                <Link to={`/${categorySlug}/${postSlug}`}>{title}</Link>
-              </h2>
-              <h3>
-                in category
-                {' '}
-                <Link to={`/${categorySlug}/`}>{category.name}</Link>
-              </h3>
-              {text}
-            </>
-          );
-        }}
-      </Query>
+      <PostQuery postSlug={postSlug} />
     </div>
   );
 };
@@ -63,6 +19,7 @@ PostPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       categorySlug: PropTypes.string.isRequired,
+      postSlug: PropTypes.string.isRequired,
     }),
   }),
 };
