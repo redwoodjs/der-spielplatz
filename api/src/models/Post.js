@@ -8,7 +8,6 @@ export const schema = {
     id: { type: 'integer' },
     title: { type: 'string' },
     text: { type: 'string' },
-    age: { type: 'number' },
     category: { type: 'object' },
   },
 };

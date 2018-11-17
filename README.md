@@ -31,7 +31,7 @@ createdb derspielplatz
 You'll need to create an `api/.env` file to specify database connection info. If you
 followed the commands above, you can simply use the following:
 
-```
+```env
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=
@@ -55,6 +55,12 @@ yarn install
 
 ```terminal
 yarn migrate
+```
+
+## Database seeds
+
+```terminal
+yarn seed
 ```
 
 ## Fire it up!
