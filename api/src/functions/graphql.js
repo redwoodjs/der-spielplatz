@@ -4,32 +4,29 @@ import { makeExecutableSchema } from 'apollo-server';
 
 import database from 'src/lib/database';
 
-import {
-  typeDefs as postTypeDefs,
-  resolvers as postResolvers,
-} from 'src/graphql/post.js';
-
-import {
-  typeDefs as categoryTypeDefs,
-  resolvers as categoryResolvers,
-} from 'src/graphql/category.js';
-
 database.init();
 
-const baseTypeDefs = `
+const allTypeDefs = [`
   type Query {
     _empty: String
   }
   type Mutation {
     _empty: String
   }
-`;
+`];
 
-const baseResolvers = {};
+const allResolvers = [{}];
+
+const requires = require.context('../graphql', true, /\.js$/);
+requires.keys().forEach(filename => {
+  const { typeDefs, resolvers } = requires(filename);
+  allTypeDefs.push(typeDefs);
+  allResolvers.push(resolvers);
+});
 
 const schema = makeExecutableSchema({
-  typeDefs: [baseTypeDefs, postTypeDefs, categoryTypeDefs],
-  resolvers: merge(baseResolvers, postResolvers, categoryResolvers),
+  typeDefs: allTypeDefs,
+  resolvers: merge(allResolvers),
 });
 
 const server = new ApolloServer({
