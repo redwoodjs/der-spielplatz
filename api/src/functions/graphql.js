@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
+import { GraphQLDateTime } from 'graphql-iso-date';
 
 import database from 'src/lib/database';
 
@@ -9,6 +10,8 @@ database.init();
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
+  scalar Date
+
   type Category {
     id: ID!
     name: String!
@@ -26,6 +29,7 @@ export const typeDefs = gql`
     slug: String!
     title: String!
     text: String!
+    createdAt: Date
     category: Category
   }
 
@@ -51,6 +55,8 @@ export const typeDefs = gql`
 
 // TODO: Checkout https://github.com/vincit/objection-graphql#onquery
 export const resolvers = {
+  Date: GraphQLDateTime,
+
   Query: {
     post: (_, { slug }) => Post.query()
       .eager('category')
