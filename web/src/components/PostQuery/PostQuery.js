@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Post from 'src/components/Post';
+import Post, { Skeleton } from 'src/components/Post';
 
 const PostQuery = ({ postSlug }) => (
   <Query
@@ -12,10 +12,9 @@ const PostQuery = ({ postSlug }) => (
         post(slug: $slug) {
           id
           title
-          slug
           text
+          createdAt
           category {
-            id
             name
             slug
           }
@@ -26,7 +25,7 @@ const PostQuery = ({ postSlug }) => (
     errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Skeleton />;
       if (error) {
         return (
           <pre>

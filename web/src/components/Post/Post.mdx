@@ -1,0 +1,21 @@
+---
+name: BlogPost
+---
+
+# BlogPost
+
+import BlogPost, { Skeleton } from "./";
+import lipsum from "lorem-ipsum";
+
+<BlogPost
+  title="A blog post"
+  slug="a-blog-post"
+  text={lipsum({ count: 200 })}
+  createdAt={new Date()}
+  category={{
+    name: "Trees, bees and sausages",
+    slug: "a-category"
+  }}
+/>
+
+<Skeleton />
