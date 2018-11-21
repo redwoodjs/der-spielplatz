@@ -1,4 +1,4 @@
-import { Model } from 'objection';
+import BaseModel from 'src/lib/BaseModel';
 
 export const schema = {
   type: 'object',
@@ -11,29 +11,11 @@ export const schema = {
   },
 };
 
-export default class Category extends Model {
+export default class Category extends BaseModel {
   static tableName = 'categories';
 
-  $beforeInsert() {
-    this.createdAt = new Date().toISOString();
-    this.updatedAt = new Date().toISOString();
-  }
-
-  $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
-  }
-
   static get relationMappings() {
-    return {
-      posts: {
-        relation: Model.HasManyRelation,
-        modelClass: this.allModels().Post,
-        join: {
-          from: 'categories.id',
-          to: 'posts.categoryId',
-        },
-      },
-    };
+    return { posts: { relation: BaseModel.HasManyRelation, modelClass: this.allModels().Post, join: { from: 'categories.id', to: 'posts.categoryId' } } };
   }
 
   static get jsonSchema() {
