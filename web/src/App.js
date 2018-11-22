@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import client from 'src/lib/apolloGraphQLClient';
+import { client } from 'src/lib/graphql';
 import Header from 'src/components/Header';
 
 import HomePage from 'src/pages/HomePage';
