@@ -8,6 +8,7 @@ export const typeDefs = gql`
     slug: String!
     title: String!
     text: String!
+    createdAt: Date
     category: Category
   }
 

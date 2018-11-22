@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+
+import { Query, gql } from 'src/lib/graphql';
 
 import Post from 'src/components/Post';
 
 const PostQuery = ({ postSlug }) => (
   <Query
+    {...Post.queryProps}
     query={gql`
       query Post($slug: String!) {
         post(slug: $slug) {
           id
           title
-          slug
           text
+          createdAt
           category {
-            id
             name
             slug
           }
@@ -25,16 +25,8 @@ const PostQuery = ({ postSlug }) => (
     variables={{ slug: postSlug }}
     errorPolicy="all"
   >
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) {
-        return (
-          <pre>
-            <code>{error && error.graphQLErrors[0] && error.graphQLErrors[0].message}</code>
-          </pre>
-        );
-      }
-      return <Post {...data.post} />;
+    {({ data: { post } }) => {
+      return <Post {...post} />;
     }}
   </Query>
 );

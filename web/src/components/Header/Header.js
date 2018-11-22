@@ -4,7 +4,7 @@ import Link from 'src/components/Link';
 
 const Header = () => (
   <h1>
-    <Link to="/">Der Spielplatz Blog.</Link>
+    <Link to="/">ACME Blog</Link>
   </h1>
 );
 
