@@ -1,92 +1,45 @@
-import { ApolloServer, gql } from 'apollo-server-lambda';
-import { GraphQLDateTime } from 'graphql-iso-date';
+import { merge } from 'lodash';
+import { ApolloServer } from 'apollo-server-lambda';
+import { makeExecutableSchema } from 'apollo-server';
+import { GraphQLDateTime } from 'graphql-iso-date'
 
 import database from 'src/lib/database';
 
-import Category from 'src/models/Category';
-import Post from 'src/models/Post';
-
 database.init();
 
-// Construct a schema, using GraphQL schema language
-export const typeDefs = gql`
+const allTypeDefs = [
+  `
   scalar Date
 
-  type Category {
-    id: ID!
-    name: String!
-    slug: String!
-    posts: [Post]
-  }
-
-  input CategoryInput {
-    name: String!
-    slug: String!
-  }
-
-  type Post {
-    id: ID!
-    slug: String!
-    title: String!
-    text: String!
-    createdAt: Date
-    category: Category
-  }
-
-  input PostInput {
-    title: String!
-    slug: String!
-    text: String!
-    categoryId: ID!
-  }
-
   type Query {
-    post(slug: String!): Post
-    categories: [Category]
-    category(slug: String!): Category
+    _empty: String
   }
-
   type Mutation {
-    postCreate(post: PostInput!): Post
-    categoryCreate(category: CategoryInput!): Category
-    postAddCategory(postId: ID!, categoryId: ID!): Post
+    _empty: String
   }
-`;
+`,
+];
 
-// TODO: Checkout https://github.com/vincit/objection-graphql#onquery
-export const resolvers = {
-  Date: GraphQLDateTime,
-
-  Query: {
-    post: (_, { slug }) => Post.query()
-      .eager('category')
-      .findOne({ slug }),
-    categories: () => Category.query().eager('posts'),
-    category: (_, { slug }) => Category.query()
-      .eager('posts')
-      .findOne({ slug }),
+const allResolvers = [
+  {
+    Date: GraphQLDateTime,
   },
+];
 
-  Mutation: {
-    postCreate: (_, args) => {
-      return Post.query().insert(args.post);
-    },
-    categoryCreate: (_, args) => {
-      return Category.query().insert(args.category);
-    },
-    postAddCategory: (_, args) => {
-      return Post.query().patchAndFetchById(args.postId, { categoryId: args.categoryId });
-    },
-  },
+const requires = require.context('../graphql', true, /\.js$/);
+requires.keys().forEach(filename => {
+  const { typeDefs, resolvers } = requires(filename);
+  allTypeDefs.push(typeDefs);
+  allResolvers.push(resolvers);
+});
 
-  Category: {
-    posts: category => category.posts,
-  },
-};
+const schema = makeExecutableSchema({
+  typeDefs: allTypeDefs,
+  resolvers: merge(allResolvers),
+});
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
 });
 
 export const handler = server.createHandler();
