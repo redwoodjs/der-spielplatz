@@ -77,8 +77,7 @@ Browse to `localhost:8080` to see the web app. Netlify functions run on
 Speed development and document your components with Docz!
 
 ```terminal
-cd web
-yarn docz dev
+yarn docz
 ```
 
 Browse to `localhost:3000`.
