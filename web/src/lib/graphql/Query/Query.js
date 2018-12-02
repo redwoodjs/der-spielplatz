@@ -7,7 +7,10 @@ import Skeleton from './Skeleton';
 const Query = ({
   component, spec, children,
 }) => {
-  const { skeleton } = component.queryProps;
+  let skeleton;
+  if (component.queryProps) {
+    ({ skeleton } = component.queryProps);
+  }
   return (
     <ApolloQuery {...spec}>
       {({ loading, error, data }) => {

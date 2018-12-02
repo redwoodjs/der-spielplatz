@@ -1,6 +1,6 @@
 import { gql } from 'src/lib/graphql';
 
-class PostModel {
+export default class post {
   static postFromSlug = slug => ({
     query: gql`
       query Post($slug: String!) {
@@ -20,5 +20,3 @@ class PostModel {
     errorPolicy: 'all',
   })
 }
-
-export default PostModel;
