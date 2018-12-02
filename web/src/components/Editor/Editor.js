@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 
-import post from 'src/queries/post';
+import { updatePost } from 'src/queries/post';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Editor extends React.Component {
   render() {
     const { title, text } = this.state;
     return (
-      <Mutation mutation={post.updatePost().mutation}>
+      <Mutation mutation={updatePost().mutation}>
         {mutate => (
           <form onSubmit={e => this.handleSubmit(e, mutate)}>
             <SC.Title name="title" type="text" value={title} onChange={this.handleInputChange} />

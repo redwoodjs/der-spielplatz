@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Query from 'src/lib/graphql/Query';
 import Editor from 'src/components/Editor';
-import post from 'src/queries/post';
+import { postFromSlug } from 'src/queries/post';
 
 const EditPage = ({
   match: {
@@ -12,7 +12,7 @@ const EditPage = ({
 }) => {
   return (
     <div>
-      <Query component={Editor} spec={post.postFromSlug(postSlug)}>
+      <Query component={Editor} spec={postFromSlug(postSlug)}>
         {data => <Editor {...data.post} />}
       </Query>
     </div>
