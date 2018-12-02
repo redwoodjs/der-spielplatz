@@ -3,7 +3,7 @@ import { gql } from 'src/lib/graphql';
 export default class category {
     static allCategories = () => ({
       query: gql`
-        query {
+        query allCategories {
           categories {
             id
             name

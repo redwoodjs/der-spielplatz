@@ -3,7 +3,7 @@ import { gql } from 'src/lib/graphql';
 export default class post {
   static postFromSlug = slug => ({
     query: gql`
-      query Post($slug: String!) {
+      query postFromSlug($slug: String!) {
         post(slug: $slug) {
           id
           title
