@@ -4,9 +4,12 @@ import { Query as ApolloQuery } from 'react-apollo';
 
 import Skeleton from './Skeleton';
 
-const Query = ({ skeleton, children, ...others }) => {
+const Query = ({
+  component, spec, children,
+}) => {
+  const { skeleton } = component.queryProps;
   return (
-    <ApolloQuery {...others}>
+    <ApolloQuery {...spec}>
       {({ loading, error, data }) => {
         if (loading) {
           if (typeof skeleton !== 'undefined') {
@@ -23,14 +26,15 @@ const Query = ({ skeleton, children, ...others }) => {
           );
         }
 
-        return children({ loading, error, data });
+        return children(data);
       }}
     </ApolloQuery>
   );
 };
 
 Query.propTypes = {
-  skeleton: PropTypes.object,
+  component: PropTypes.func,
+  spec: PropTypes.object,
   children: PropTypes.func.isRequired,
 };
 

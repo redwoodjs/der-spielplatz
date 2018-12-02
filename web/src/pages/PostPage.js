@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostQuery from 'src/components/PostQuery';
+import Query from 'src/lib/graphql/Query';
+import Post from 'src/components/Post';
+import PostModel from 'src/models/PostModel';
 
 const PostPage = ({
   match: {
@@ -10,7 +12,9 @@ const PostPage = ({
 }) => {
   return (
     <div>
-      <PostQuery postSlug={postSlug} />
+      <Query component={Post} spec={PostModel.postFromSlug(postSlug)}>
+        {data => <Post {...data.post} />}
+      </Query>
     </div>
   );
 };
