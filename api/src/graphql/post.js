@@ -19,12 +19,19 @@ export const typeDefs = gql`
     categoryId: ID!
   }
 
+  input PostUpdateInput {
+    id: ID!
+    title: String!
+    text: String!
+  }
+
   extend type Query {
     post(slug: String!): Post
   }
 
   extend type Mutation {
     postCreate(post: PostInput!): Post
+    postUpdate(post: PostUpdateInput!): Post
     postAddCategory(postId: ID!, categoryId: ID!): Post
   }
 `;
@@ -39,6 +46,10 @@ export const resolvers = {
   Mutation: {
     postCreate: (_, args) => {
       return Post.query().insert(args.post);
+    },
+    postUpdate: (_, args) => {
+      const { post: { id, title, text } } = args;
+      return Post.query().patchAndFetchById(id, { title, text });
     },
     postAddCategory: (_, args) => {
       return Post.query().patchAndFetchById(args.postId, { categoryId: args.categoryId });

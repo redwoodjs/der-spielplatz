@@ -18,5 +18,15 @@ export default class post {
     `,
     variables: { slug },
     errorPolicy: 'all',
-  })
+  });
+
+  static updatePost = () => ({
+    mutation: gql`
+      mutation updatePost($post: PostUpdateInput!) {
+        postUpdate(post: $post) {
+          id
+        }
+      }
+    `,
+  });
 }
