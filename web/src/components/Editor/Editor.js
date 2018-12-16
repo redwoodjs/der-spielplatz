@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Mutation } from 'react-apollo';
+import Mutation from 'src/lib/graphql/Mutation';
 
 import { updatePost } from 'src/api/post';
 
@@ -26,18 +26,18 @@ class Editor extends React.Component {
     this.setState({
       [name]: val,
     });
-  }
+  };
 
   handleSubmit = (e, mutate) => {
     const { id } = this.props;
     e.preventDefault();
     mutate({ variables: { post: { id, ...this.state } } });
-  }
+  };
 
   render() {
     const { title, text } = this.state;
     return (
-      <Mutation mutation={updatePost().mutation}>
+      <Mutation spec={updatePost()}>
         {mutate => (
           <form onSubmit={e => this.handleSubmit(e, mutate)}>
             <SC.Title name="title" type="text" value={title} onChange={this.handleInputChange} />
