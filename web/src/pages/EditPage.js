@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Query from 'src/lib/graphql/Query';
 import Editor from 'src/components/Editor';
-import { postFromSlug } from 'src/queries/post';
+import { postFromSlug } from 'src/api/post';
 
 const EditPage = ({
   match: {

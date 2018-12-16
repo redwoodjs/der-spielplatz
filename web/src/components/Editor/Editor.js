@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 
-import { updatePost } from 'src/queries/post';
+import { updatePost } from 'src/api/post';
 
 class Editor extends React.Component {
   constructor(props) {
