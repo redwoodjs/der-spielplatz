@@ -1,0 +1,26 @@
+---
+name: Editor
+---
+
+import { Playground, PropsTable } from "docz";
+import lipsum from "lorem-ipsum";
+
+import Editor from "./";
+
+# Editor
+
+Edit a post.
+
+## Properties
+
+<PropsTable of={Editor} />
+
+## Basic Usage
+
+<Playground>
+  <Editor
+    id="1"
+    title="A blog post"
+    text={lipsum({ count: 10 })}
+  />
+</Playground>

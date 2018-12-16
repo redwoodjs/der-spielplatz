@@ -14,6 +14,7 @@ const webpackOverlay = {
 
 export default {
   title: 'Docz • Der Spielplatz',
+  wrapper: 'src/lib/docz/wrapper.js',
   modifyBundlerConfig: config => {
     return merge(config, webpackOverlay);
   },

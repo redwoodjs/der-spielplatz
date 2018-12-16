@@ -2,30 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Query from 'src/lib/graphql/Query';
-import Post from 'src/components/Post';
+import Editor from 'src/components/Editor';
 import { postFromSlug } from 'src/queries/post';
 
-const PostPage = ({
+const EditPage = ({
   match: {
     params: { postSlug },
   },
 }) => {
   return (
     <div>
-      <Query component={Post} spec={postFromSlug(postSlug)}>
-        {data => <Post {...data.post} />}
+      <Query component={Editor} spec={postFromSlug(postSlug)}>
+        {data => <Editor {...data.post} />}
       </Query>
     </div>
   );
 };
 
-PostPage.propTypes = {
+EditPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      categorySlug: PropTypes.string.isRequired,
       postSlug: PropTypes.string.isRequired,
     }),
   }),
 };
 
-export default PostPage;
+export default EditPage;

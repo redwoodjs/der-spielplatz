@@ -1,19 +1,31 @@
 ---
-name: BlogPost
+name: Post
 ---
 
-# BlogPost
-
-import BlogPost from "./";
+import { Playground, PropsTable } from "docz";
 import lipsum from "lorem-ipsum";
 
-<BlogPost
-  title="A blog post"
-  slug="a-blog-post"
-  text={lipsum({ count: 200 })}
-  createdAt={new Date()}
-  category={{
-    name: "Trees, bees and sausages",
-    slug: "a-category"
-  }}
-/>
+import Post from "./";
+
+# Post
+
+This is the primary component for viewing a post.
+
+## Properties
+
+<PropsTable of={Post} />
+
+## Basic Usage
+
+<Playground>
+  <Post
+    title="A blog post"
+    slug="a-blog-post"
+    text={lipsum({ count: 200 })}
+    createdAt={new Date()}
+    category={{
+      name: "Trees, bees and sausages",
+      slug: "a-category"
+    }}
+  />
+</Playground>
