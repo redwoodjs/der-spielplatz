@@ -17,7 +17,7 @@ const App = () => (
   <ApolloProvider client={client}>
     <Header />
     <Router>
-      <HomePage default path="/" />
+      <HomePage path="/" default />
       <CategoryPage path="/:categorySlug" />
       <PostPage path="/:categorySlug/:postSlug" />
       <EditPage path="/edit/:postSlug" />
@@ -25,4 +25,4 @@ const App = () => (
   </ApolloProvider>
 );
 
-ReactDOM.render(<App />, document.getElementById('react-app'));
+ReactDOM.render(<App />, document.getElementById('hammer-app'));
