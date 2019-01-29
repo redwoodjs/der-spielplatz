@@ -5,11 +5,7 @@ import gql from 'graphql-tag';
 
 import Link from 'src/components/Link';
 
-const CategoryPage = ({
-  match: {
-    params: { categorySlug },
-  },
-}) => {
+const CategoryPage = ({ categorySlug }) => {
   return (
     <div>
       <Query
@@ -66,11 +62,7 @@ const CategoryPage = ({
 };
 
 CategoryPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      categorySlug: PropTypes.string.isRequired,
-    }),
-  }),
+  categorySlug: PropTypes.string.isRequired,
 };
 
 export default CategoryPage;

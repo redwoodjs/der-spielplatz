@@ -1,1 +1,1 @@
-export { Link as default } from 'react-router-dom';
+export { Link as default } from '@reach/router';

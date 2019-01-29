@@ -5,11 +5,7 @@ import Query from 'src/lib/graphql/Query';
 import Editor from 'src/components/Editor';
 import { postFromSlug } from 'src/api/post';
 
-const EditPage = ({
-  match: {
-    params: { postSlug },
-  },
-}) => {
+const EditPage = ({ postSlug }) => {
   return (
     <div>
       <Query component={Editor} spec={postFromSlug(postSlug)}>
@@ -20,11 +16,7 @@ const EditPage = ({
 };
 
 EditPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      postSlug: PropTypes.string.isRequired,
-    }),
-  }),
+  postSlug: PropTypes.string.isRequired,
 };
 
 export default EditPage;
