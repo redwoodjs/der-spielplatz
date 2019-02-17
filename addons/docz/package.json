@@ -1,0 +1,21 @@
+{
+  "name": "hammer-docz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docz dev",
+    "build": "docz build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "directory-named-webpack-plugin": "^4.0.0",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7"
+  },
+  "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  }
+}

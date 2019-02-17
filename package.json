@@ -2,13 +2,14 @@
   "private": true,
   "workspaces": [
     "api",
-    "web"
+    "web",
+    "addons/docz"
   ],
   "scripts": {
     "start": "yarn workspace api start & yarn workspace web start",
     "build": "yarn workspace api build && yarn workspace web build",
     "migrate": "yarn workspace api run knex migrate:latest",
     "seed": "yarn workspace api knex seed:run",
-    "docz": "yarn workspace web docz dev"
+    "docz": "yarn workspace hammer-docz start"
   }
 }
