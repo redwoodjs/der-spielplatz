@@ -4,7 +4,7 @@ const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 
 const webSrcPath = path.resolve(__dirname, "../../web/src");
 
-const webpackOverlay = {
+const webpackModifications = {
   resolve: {
     alias: {
       src: webSrcPath
@@ -19,11 +19,13 @@ const webpackOverlay = {
 };
 
 export default {
-  title: "Docz • Der Spielplatz",
   src: webSrcPath,
   typescript: false,
-  //  wrapper: "src/lib/docz/wrapper.js",
   modifyBundlerConfig: config => {
-    return merge(config, webpackOverlay);
+    config.module.rules.push({
+      test: /\.css$/,
+      loader: "style-loader!css-loader"
+    });
+    return merge(config, webpackModifications);
   }
 };

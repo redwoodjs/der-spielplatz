@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^2.1.0",
     "directory-named-webpack-plugin": "^4.0.0",
     "docz": "^0.13.7",
-    "docz-theme-default": "^0.13.7"
+    "docz-theme-default": "^0.13.7",
+    "style-loader": "^0.23.1"
   },
   "dependencies": {
     "react": "^16.8.2",
