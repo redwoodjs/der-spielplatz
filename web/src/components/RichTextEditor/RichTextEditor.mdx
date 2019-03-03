@@ -9,7 +9,10 @@ import RichTextEditor from "./";
 # Rich Text Editor
 
 <Playground>
-  <RichTextEditor>This is the default text.</RichTextEditor>
+  <RichTextEditor
+    handleChanges={changes => {
+      // upload these somewhere...
+      console.log(JSON.stringify(changes));
+    }}
+  />
 </Playground>
-
-## TODO

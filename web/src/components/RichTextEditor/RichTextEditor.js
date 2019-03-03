@@ -1,13 +1,30 @@
+/* eslint-disable no-new */
 import React, { useRef, useEffect } from 'react';
-import Quill from 'quill';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Quill from 'quill';
+import throttle from 'lodash.throttle';
 
 import 'quill/dist/quill.bubble.css';
 
-const RichTextEditor = ({ children }) => {
+const Delta = Quill.import('delta');
+let changeDeltas = new Delta();
+
+const RichTextEditor = ({ children, handleChanges }) => {
   const editorEl = useRef(null);
+
+  const throttledAutosave = useRef(
+    throttle(async () => {
+      try {
+        await handleChanges(changeDeltas);
+        changeDeltas = new Delta();
+      } catch (e) {
+        // do nothing
+      }
+    }, 1000)
+  );
+
   useEffect(() => {
-    /* eslint-disable no-new */
     const quill = new Quill(editorEl.current, {
       modules: {
         toolbar: [
@@ -18,8 +35,19 @@ const RichTextEditor = ({ children }) => {
       },
       theme: 'bubble', // or 'snow'
     });
-
     quill.focus();
+
+    if (handleChanges) {
+      quill.on('text-change', (delta, oldDelta, source) => {
+        if (source !== 'user') {
+          return;
+        }
+        changeDeltas = changeDeltas.compose(delta);
+        if (changeDeltas.length() > 0) {
+          throttledAutosave.current(changeDeltas);
+        }
+      });
+    }
   }, [editorEl]);
 
   return <SC.Container ref={editorEl}>{children}</SC.Container>;
@@ -35,5 +63,9 @@ SC.Container = styled.div`
     font-size: 16px;
   }
 `;
+
+RichTextEditor.propTypes = {
+  handleChanges: PropTypes.func,
+};
 
 export default RichTextEditor;
