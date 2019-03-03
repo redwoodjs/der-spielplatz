@@ -1,0 +1,16 @@
+{
+  "name": "hammer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.3.1",
+    "graphql": "^14.1.1",
+    "react-apollo": "^2.5.1"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}
