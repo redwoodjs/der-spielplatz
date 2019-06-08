@@ -5,11 +5,8 @@
     "web"
   ],
   "scripts": {
-    "start": "yarn workspace api start & yarn workspace web start",
-    "build": "yarn workspace api build && yarn workspace web build",
-    "migrate": "yarn workspace api run knex migrate:latest",
-    "seed": "yarn workspace api knex seed:run",
-    "docz": "yarn workspace web docz dev"
+    "start": "yarn start:api",
+    "start:api": "nodemon --exec babel-node ./api/src/hammer-dev-server --port 8910 --path ./api/src/functions"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -20,6 +17,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "core-js": "^3.1.3"
+    "core-js": "^3.1.3",
+    "nodemon": "^1.19.1"
   }
 }
