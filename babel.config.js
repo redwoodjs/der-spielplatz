@@ -7,7 +7,7 @@ module.exports = {
       {
         targets: {
           // Node.js version available on Netlify
-          node: "8.10.0"
+          node: true
         },
         useBuiltIns: "entry",
         corejs: 3

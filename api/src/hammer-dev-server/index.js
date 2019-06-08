@@ -15,14 +15,14 @@ const routesAtPath = (searchPath, exts = ['js', 'ts']) => fs
       .slice(0, -1)
       .join();
     return {
-      [routeName]: path.join(searchPath, filename),
+      [routeName]: path.resolve(path.join(searchPath, filename)),
       ...acc,
     };
   }, {});
 
 args
   .option('port', '', 8910)
-  .option('path', 'The path to your lambda functions', './api/src/functions');
+  .option('path', 'The path to your lambda functions', './src/functions');
 
 const flags = args.parse(process.argv);
 const filesBasePath = path.join(flags.path);
@@ -39,10 +39,12 @@ app.use(expressLogging(console));
 const hostname = `http://localhost:${flags.port}`;
 const routes = routesAtPath(filesBasePath);
 
-console.log('\n\nServing the following functions:');
-Object.keys(routes).forEach(routeName => {
-  console.log(`- ${hostname}/${routeName}`);
-});
+console.log('\n\nThe following functions are available:');
+console.log(
+  Object.keys(routes)
+    .map(routeName => `- ${hostname}/${routeName}`)
+    .join('\n')
+);
 
 const parseBody = rawBody => {
   if (typeof rawBody === 'string') {
@@ -53,6 +55,15 @@ const parseBody = rawBody => {
   }
   return { body: '', isBase64Encoded: false };
 };
+
+app.all('/', (req, res) => {
+  return res.send(`
+    <p>The following functions are available:</p>
+    ${Object.keys(routes)
+    .map(routeName => `- <a href="/${routeName}">/${routeName}</a>`)
+    .join('<br />')}
+  `);
+});
 
 app.all('/:routeName', (req, res) => {
   const modulePath = routes[req.params.routeName];
@@ -87,7 +98,7 @@ app.all('/:routeName', (req, res) => {
       response.setHeader(header, headers[header]);
     });
     response.statusCode = statusCode;
-    response.end(body);
+    return response.end(body);
   };
 
   // TODO: Add support for promises.

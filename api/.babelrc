@@ -4,8 +4,11 @@
     [
       "@babel/preset-env",
       {
-        "targets": "> 0.25%, not dead",
-        "useBuiltIns": "usage",
+        "targets": {
+          // Node.js version available on Netlify
+          "node": "8.10.0"
+        },
+        "useBuiltIns": "entry",
         "corejs": 3
       }
     ]

@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "start": "yarn start:api & yarn start:web",
-    "start:api": "nodemon --exec babel-node ./api/src/hammer-dev-server --port 8910 --path ./api/src/functions",
+    "start:api": "yarn workspace api start",
     "start:web": "yarn workspace web start"
   },
   "devDependencies": {
