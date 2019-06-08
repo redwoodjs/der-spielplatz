@@ -1,11 +1,9 @@
-import { merge } from 'lodash';
+import fs from 'fs';
+import path from 'path';
+
 import { ApolloServer } from 'apollo-server-lambda';
 import { makeExecutableSchema } from 'apollo-server';
 import { GraphQLDateTime } from 'graphql-iso-date';
-
-import database from 'src/lib/database';
-
-database.init();
 
 const allTypeDefs = [
   `
@@ -26,16 +24,18 @@ const allResolvers = [
   },
 ];
 
-const requires = require.context('../graphql', true, /\.js$/);
-requires.keys().forEach(filename => {
-  const { typeDefs, resolvers } = requires(filename);
-  allTypeDefs.push(typeDefs);
-  allResolvers.push(resolvers);
-});
+// const filesFromPath = (searchPath, exts = ["js", "ts"]) =>
+//   fs
+//     .readdirSync(searchPath)
+//     .filter(filename => exts.includes(filename.split(".").pop()));
+
+// const files = filesFromPath(path.join(__dirname, "../graphql"));
+
+// console.log(files);
 
 const schema = makeExecutableSchema({
   typeDefs: allTypeDefs,
-  resolvers: merge(allResolvers),
+  resolvers: allResolvers,
 });
 
 const server = new ApolloServer({
