@@ -12,7 +12,7 @@ module.exports = merge(common, {
     contentBase: path.resolve(__dirname, '../dist'),
     proxy: {
       '/.netlify/functions': {
-        target: 'http://localhost:9000',
+        target: 'http://localhost:8910',
         pathRewrite: {
           '^/\\.netlify/functions': '',
         },
