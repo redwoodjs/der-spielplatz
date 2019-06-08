@@ -5,7 +5,7 @@
     "web"
   ],
   "scripts": {
-    "start": "yarn start:api && yarn start:web",
+    "start": "yarn start:api & yarn start:web",
     "start:api": "nodemon --exec babel-node ./api/src/hammer-dev-server --port 8910 --path ./api/src/functions",
     "start:web": "yarn workspace web start"
   },
