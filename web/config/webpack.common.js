@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
 
@@ -9,7 +9,7 @@ module.exports = {
     app: path.resolve(__dirname, '../src/App.js'),
   },
   plugins: [
-    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')]),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),
