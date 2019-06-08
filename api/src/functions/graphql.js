@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { merge } from 'lodash';
 
 import { ApolloServer } from 'apollo-server-lambda';
 import { makeExecutableSchema } from 'apollo-server';
@@ -24,18 +25,18 @@ const allResolvers = [
   },
 ];
 
-// const filesFromPath = (searchPath, exts = ["js", "ts"]) =>
-//   fs
-//     .readdirSync(searchPath)
-//     .filter(filename => exts.includes(filename.split(".").pop()));
-
-// const files = filesFromPath(path.join(__dirname, "../graphql"));
-
-// console.log(files);
+fs.readdirSync(path.join(__dirname, '../graphql/'))
+  .filter(filename => ['js', 'ts'].includes(filename.split('.').pop()))
+  .map(filename => `../graphql/${filename}`)
+  .forEach(filepath => {
+    const { typeDefs, resolvers } = require(filepath);
+    allTypeDefs.push(typeDefs);
+    allResolvers.push(resolvers);
+  });
 
 const schema = makeExecutableSchema({
   typeDefs: allTypeDefs,
-  resolvers: allResolvers,
+  resolvers: merge(allResolvers),
 });
 
 const server = new ApolloServer({
