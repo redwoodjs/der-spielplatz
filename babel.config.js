@@ -3,13 +3,13 @@ module.exports = {
     "@babel/preset-react",
     [
       "@babel/preset-env",
-      // It is important to note that @babel/preset-env does not support stage-x
-      // plugins.
+      // It is important to note that @babel/preset-env does not support stage-x plugins
       {
         targets: {
-          node: "current"
+          // Node.js version available on Netlify
+          node: "8.10.0"
         },
-        useBuiltIns: "usage",
+        useBuiltIns: "entry",
         corejs: 3
       }
     ]
