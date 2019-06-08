@@ -51,33 +51,11 @@ in the root directory:
 yarn install
 ```
 
-## Migrations
-
-```terminal
-yarn migrate
-```
-
-## Database seeds
-
-```terminal
-yarn seed
-```
-
 ## Fire it up!
 
 ```terminal
 yarn start
 ```
 
-Browse to `localhost:8080` to see the web app. Netlify functions run on
-`localhost:9000` but are proxied to `localhost:8080/.netlify/functions/*`.
-
-### Docz
-
-Speed development and document your components with Docz!
-
-```terminal
-yarn docz
-```
-
-Browse to `localhost:3000`.
+Browse to `localhost:8911` to see the web app. Lambda functions run on
+`localhost:8910` but are proxied to `localhost:8911/.netlify/functions/*`.
