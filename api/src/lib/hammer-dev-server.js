@@ -22,8 +22,8 @@ const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
 const lambdaFunctions = requireDir(path.resolve(PATH), {
-  recurse: true,
-  extensions: ['.js', '.ts'],
+  recurse: false,
+  extensions: ['.js'],
 });
 console.log('\n\nThe following functions are available:');
 console.log(
