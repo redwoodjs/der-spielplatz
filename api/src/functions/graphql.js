@@ -1,42 +1,29 @@
 import fs from 'fs';
 import path from 'path';
-import { merge } from 'lodash';
-
+import {
+  queryType, objectType, makeSchema, extendType,
+} from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
-import { makeExecutableSchema } from 'apollo-server';
-import { GraphQLDateTime } from 'graphql-iso-date';
 
-const allTypeDefs = [
-  `
-  scalar Date
-
-  type Query {
-    _empty: String
-  }
-  type Mutation {
-    _empty: String
-  }
-`,
-];
-
-const allResolvers = [
-  {
-    Date: GraphQLDateTime,
+const Query = queryType({
+  definition(t) {
+    t.string('hammer', () => 'time');
   },
-];
+});
 
-fs.readdirSync(path.join(__dirname, '../graphql/'))
-  .filter(filename => ['js', 'ts'].includes(filename.split('.').pop()))
-  .map(filename => `../graphql/${filename}`)
-  .forEach(filepath => {
-    const { typeDefs, resolvers } = require(filepath);
-    allTypeDefs.push(typeDefs);
-    allResolvers.push(resolvers);
-  });
+const Ext = extendType({
+  type: 'Query',
+  definition: t => {
+    t.string('version', () => 'v0.19.2');
+  },
+});
 
-const schema = makeExecutableSchema({
-  typeDefs: allTypeDefs,
-  resolvers: merge(allResolvers),
+const schema = makeSchema({
+  types: [Query, Ext],
+  outputs: {
+    schema: path.join(__dirname, '../../generated/schema.graphql'),
+    typegen: path.join(__dirname, '../../generated/types.ts'),
+  },
 });
 
 const server = new ApolloServer({
