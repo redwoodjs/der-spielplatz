@@ -1,44 +1,27 @@
-import path from 'path';
 import requireDir from 'require-dir';
-
 import { queryType, makeSchema } from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
+import { resolve, join } from 'path';
 
-/**
- * Look for `*.js` files at this path. The modules should export a default function
- * the calls Nexus' `extendType`, e.g.:
- *
- * ```js
- * // Add "hello" field that resolves to "world" on the Query type.
- *  export default extendType({
- *    type: "Query",
- *    definition: t => { t.string("hello", () => "world") }
- *  })
- * ```
- */
-const GRAPHQL_PATH = '../graphql';
+const GRAPHQL_DIR = '../graphql/';
+const OUTPUTS_DIR = '../../';
 
-const Query = queryType({
+const BaseQueryType = queryType({
   definition(t) {
     t.string('hammer', () => 'time');
   },
 });
 
-const graphQLTypes = requireDir(GRAPHQL_PATH, {
-  recurse: false,
-  extensions: ['.js'],
-});
-
+const moreGraphQLTypes = requireDir(GRAPHQL_DIR, { recurse: false, extensions: ['.js'] });
 const schema = makeSchema({
-  types: [Query, ...Object.values(graphQLTypes).map(module => module.default)],
+  types: [BaseQueryType, ...Object.values(moreGraphQLTypes)],
   outputs: {
-    schema: path.join(__dirname, '../../my-schema.graphql'),
-    typegen: path.join(__dirname, '../../my-generated-types.d.ts'),
+    schema: resolve(join(OUTPUTS_DIR, 'schema.graphql')),
+    typegen: resolve(join(OUTPUTS_DIR, 'generated-types.d.ts')),
   },
 });
 
 const server = new ApolloServer({
   schema,
 });
-
 export const handler = server.createHandler();
