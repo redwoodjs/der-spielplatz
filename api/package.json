@@ -24,7 +24,13 @@
     "prettier-eslint": "^8.8.2",
     "qs": "^6.7.0"
   },
+  "peerDependencies": {
+    "@generated/photon": "1.2.0"
+  },
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions"
+    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions",
+    "migration:create": "prisma2 lift create",
+    "migration:up": "prisma2 lift up",
+    "migration:down": "prisma2 lift down"
   }
 }
