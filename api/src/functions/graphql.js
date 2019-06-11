@@ -1,7 +1,17 @@
+/**
+ * This is an example of front matter that could be used to deploy when a lambda
+ * function is deployed, and during emulation via hammer-dev-server
+ * ---
+ * Provider: AWS
+ * Runtime: nodejs10.x
+ * Middleware: []
+ * ---
+ */
 import requireDir from 'require-dir';
 import { queryType, makeSchema } from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
 import { resolve, join } from 'path';
+import { Photon } from '@generated/photon';
 
 const GRAPHQL_DIR = '../graphql/';
 const OUTPUTS_DIR = '../../';
@@ -23,5 +33,10 @@ const schema = makeSchema({
 
 const server = new ApolloServer({
   schema,
+  context: {
+    // TODO: Add current user.
+    currentUser: null,
+    photon: new Photon(),
+  },
 });
 export const handler = server.createHandler();
