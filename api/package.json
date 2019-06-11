@@ -28,7 +28,7 @@
     "@generated/photon": "1.2.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions",
+    "start": "nodemon --delay 1500ms --signal SIGTERM --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions",
     "migration:create": "prisma2 lift create",
     "migration:up": "prisma2 lift up",
     "migration:down": "prisma2 lift down"
