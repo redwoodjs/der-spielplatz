@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+// TODO: https://github.com/remy/nodemon/issues/1316#issuecomment-441606950
 import path from 'path';
 
 import express from 'express';
