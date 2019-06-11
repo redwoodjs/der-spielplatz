@@ -1,42 +1,40 @@
-import fs from 'fs';
 import path from 'path';
-import { merge } from 'lodash';
+import requireDir from 'require-dir';
 
+import { queryType, makeSchema } from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
-import { makeExecutableSchema } from 'apollo-server';
-import { GraphQLDateTime } from 'graphql-iso-date';
 
-const allTypeDefs = [
-  `
-  scalar Date
+/**
+ * Look for `*.js` files at this path. The modules should export a default function
+ * the calls Nexus' `extendType`, e.g.:
+ *
+ * ```js
+ * // Add "hello" field that resolves to "world" on the Query type.
+ *  export default extendType({
+ *    type: "Query",
+ *    definition: t => { t.string("hello", () => "world") }
+ *  })
+ * ```
+ */
+const GRAPHQL_PATH = '../graphql';
 
-  type Query {
-    _empty: String
-  }
-  type Mutation {
-    _empty: String
-  }
-`,
-];
-
-const allResolvers = [
-  {
-    Date: GraphQLDateTime,
+const Query = queryType({
+  definition(t) {
+    t.string('hammer', () => 'time');
   },
-];
+});
 
-fs.readdirSync(path.join(__dirname, '../graphql/'))
-  .filter(filename => ['js', 'ts'].includes(filename.split('.').pop()))
-  .map(filename => `../graphql/${filename}`)
-  .forEach(filepath => {
-    const { typeDefs, resolvers } = require(filepath);
-    allTypeDefs.push(typeDefs);
-    allResolvers.push(resolvers);
-  });
+const graphQLTypes = requireDir(GRAPHQL_PATH, {
+  recurse: false,
+  extensions: ['.js'],
+});
 
-const schema = makeExecutableSchema({
-  typeDefs: allTypeDefs,
-  resolvers: merge(allResolvers),
+const schema = makeSchema({
+  types: [Query, ...Object.values(graphQLTypes).map(module => module.default)],
+  outputs: {
+    schema: path.join(__dirname, '../../my-schema.graphql'),
+    typegen: path.join(__dirname, '../../my-generated-types.d.ts'),
+  },
 });
 
 const server = new ApolloServer({

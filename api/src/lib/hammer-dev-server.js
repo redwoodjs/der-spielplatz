@@ -1,32 +1,38 @@
-import fs from 'fs';
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
+
 import express from 'express';
 import expressLogging from 'express-logging';
 import bodyParser from 'body-parser';
 import qs from 'qs';
 import args from 'args';
+import requireDir from 'require-dir';
 
-const routesAtPath = (searchPath, exts = ['js', 'ts']) => fs
-  .readdirSync(searchPath)
-  .filter(filename => exts.includes(filename.split('.').pop()))
-  .reduce((acc, filename) => {
-    const routeName = filename
-      .split('.')
-      .slice(0, -1)
-      .join();
-    return {
-      [routeName]: path.resolve(path.join(searchPath, filename)),
-      ...acc,
-    };
-  }, {});
+/**
+ * The hammer dev server emulates Netlify and AWS Lambda functions. Specify the path
+ * to your functions, we'll import any `.js` files and map the filename to a route,
+ * e.g.: `graphql.js` -> `/graphql/`, `hello-world.js` -> `/hello-world/`.
+ * The dev server will automatically reload when files are modified.`
+ */
 
 args
   .option('port', '', 8910)
   .option('path', 'The path to your lambda functions', './src/functions');
+const { port: PORT, path: PATH } = args.parse(process.argv);
+const HOSTNAME = `http://localhost:${PORT}`;
 
-const flags = args.parse(process.argv);
-const filesBasePath = path.join(flags.path);
+const lambdaFunctions = requireDir(path.resolve(PATH), {
+  recurse: false,
+  extensions: ['.js'],
+});
+console.log('\n\nThe following functions are available:');
+console.log(
+  Object.keys(lambdaFunctions)
+    .map(routeName => `- ${HOSTNAME}/${routeName}/`)
+    .join('\n')
+);
 
+// Express.js Setup
 const app = express();
 app.use(
   bodyParser.text({
@@ -35,17 +41,6 @@ app.use(
 );
 app.use(bodyParser.raw({ type: '*/*' }));
 app.use(expressLogging(console));
-
-const hostname = `http://localhost:${flags.port}`;
-const routes = routesAtPath(filesBasePath);
-
-console.log('\n\nThe following functions are available:');
-console.log(
-  Object.keys(routes)
-    .map(routeName => `- ${hostname}/${routeName}`)
-    .join('\n')
-);
-
 const parseBody = rawBody => {
   if (typeof rawBody === 'string') {
     return { body: rawBody, isBase64Encoded: false };
@@ -59,22 +54,24 @@ const parseBody = rawBody => {
 app.all('/', (req, res) => {
   return res.send(`
     <p>The following functions are available:</p>
-    ${Object.keys(routes)
+    ${Object.keys(lambdaFunctions)
     .map(routeName => `- <a href="/${routeName}">/${routeName}</a>`)
     .join('<br />')}
   `);
 });
 
 app.all('/:routeName', (req, res) => {
-  const modulePath = routes[req.params.routeName];
-  if (!modulePath) {
-    console.warn(`route ${req.params.routeName} not found`);
+  const { routeName } = req.params;
+
+  const lambdaFunction = lambdaFunctions[routeName];
+  if (!lambdaFunction) {
+    console.warn(`route ${routeName} not found`);
     return res.sendStatus(404);
   }
 
-  const { handler } = require(modulePath);
+  const { handler } = lambdaFunction;
   if (typeof handler !== 'function') {
-    console.warn(`"${modulePath}" does not export a function named "handler"`);
+    console.warn(`"${routeName}" does not export a function named "handler"`);
     return res.sendStatus(500);
   }
 
@@ -109,4 +106,4 @@ app.all('/:routeName', (req, res) => {
   );
 });
 
-app.listen(flags.port, () => console.log(`\n\n⚒ hammer-dev-server on ${hostname}\n\n`));
+app.listen(PORT, () => console.log(`\n\n⚒ hammer-dev-server on ${HOSTNAME}\n\n`));
