@@ -21,12 +21,12 @@ export const Hammer = objectType({
     // TODO: Grab these from somewhere.
     t.list.string('authors');
     t.string('version');
-    t.list.string('lambdaFuncs');
+    t.list.string('serverlessFunctions');
     t.field('packages', { type: HammerPackages });
-    // TODO :Expose the list of functions, the lambda provider, configuration,
+    // TODO: Expose the list of serverless functions, the provider, configuration,
     // memory, etc
-    //  - Usage stats
-    //  - Logs
+    //  - Usage stats?
+    //  - Logs?
     //  - curl execution command
   },
 });
@@ -37,7 +37,7 @@ export default queryField('hammer', {
     return {
       authors: ['Tom Preston-Werner', 'Peter Pistorius'],
       version: 'v0.0.1',
-      lambdaFuncs: ['graphql.js', 'hello.js'],
+      serverlessFunctions: ['graphql.js', 'hello.js'],
       packages: {
         api: ['nexus', 'apollo-server'],
         apiSize: '3000',

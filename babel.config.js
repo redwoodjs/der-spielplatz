@@ -6,10 +6,9 @@ module.exports = {
       // It is important to note that @babel/preset-env does not support stage-x plugins
       {
         targets: {
-          // Node.js version available on Netlify
           node: true
         },
-        useBuiltIns: "entry",
+        useBuiltIns: "usage",
         corejs: 3
       }
     ]
