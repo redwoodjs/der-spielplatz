@@ -2,8 +2,7 @@
 name: Post
 ---
 
-import { Playground, PropsTable } from "docz";
-import lipsum from "lorem-ipsum";
+import { Playground, Props } from "docz";
 
 import Post from "./";
 
@@ -13,7 +12,7 @@ This is the primary component for viewing a post.
 
 ## Properties
 
-<PropsTable of={Post} />
+<Props of={Post} />
 
 ## Basic Usage
 
@@ -21,7 +20,7 @@ This is the primary component for viewing a post.
   <Post
     title="A blog post"
     slug="a-blog-post"
-    text={lipsum({ count: 200 })}
+    text=". . ."
     createdAt={new Date()}
     category={{
       name: "Trees, bees and sausages",

@@ -13,7 +13,8 @@ const Post = ({
           <>
             {'Posted on '}
             {Intl.DateTimeFormat('en-US').format(Date.parse(createdAt))}
-            <br />{' '}
+            <br />
+            {' '}
           </>
         )}
         {'in '}

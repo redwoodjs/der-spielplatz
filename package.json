@@ -2,12 +2,14 @@
   "private": true,
   "workspaces": [
     "api",
-    "web"
+    "web",
+    "packages/hammer-docz"
   ],
   "scripts": {
     "start": "yarn start:api & yarn start:web",
     "start:api": "yarn workspace api start",
-    "start:web": "yarn workspace web start"
+    "start:web": "yarn workspace web start",
+    "docz": "yarn workspace hammer-docz docz"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
