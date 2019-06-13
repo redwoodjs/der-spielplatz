@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "hammer-docz",
+  "version": "0.0.1",
+  "devDependencies": {
+    "directory-named-webpack-plugin": "^4.0.1",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack-merge": "^4.2.1"
+  }
+}

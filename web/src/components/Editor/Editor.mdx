@@ -2,8 +2,7 @@
 name: Editor
 ---
 
-import { Playground, PropsTable } from "docz";
-import lipsum from "lorem-ipsum";
+import { Playground, Props } from "docz";
 
 import Editor from "./";
 
@@ -13,7 +12,7 @@ Edit a post.
 
 ## Properties
 
-<PropsTable of={Editor} />
+<Props of={Editor} />
 
 ## Basic Usage
 
@@ -21,6 +20,6 @@ Edit a post.
   <Editor
     id="1"
     title="A blog post"
-    text={lipsum({ count: 10 })}
+    text={"Be cool."}
   />
 </Playground>

@@ -1,1 +1,3 @@
-export { Link as default } from '@reach/router';
+import { Link } from '@reach/router';
+
+export default Link;
