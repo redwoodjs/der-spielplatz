@@ -12,7 +12,7 @@ We're using Prisma Lift and Photon for migrations and the ORM. You can run
 `prisma2 dev` which watches for changes to the datamodel and automatically applies
 your migrations to your database and generates a new Photon client.
 
-## Migrations
+## Migrations: Prisma Lift
 
 ```terminal
 npm install -g prisma2@0.0.35
@@ -26,10 +26,19 @@ model you generate a migaration with `cd api; prisma2 lift save`
 To apply the migration run `prisma2 lift up`, this will create a SQLite database
 in `./api/db/dev.db`
 
-## ORM
+## ORM: Prisma Photon
 
 You can generate the JavaScript client with `prisma2 generate`, this will be placed
 in `./api/generated/photon`
+
+API Docs: https://github.com/prisma/next/blob/bdf391bd783605063eac2a36689809ed3cb83a72/docs/photon/api.md
+
+## Seeds
+
+Prisma will offer a solution in the future, but in the meantime I've created
+`seed.js` which creates a few users, some documents and comments.
+
+`cd api; yarn babel-node seed.js`
 
 ## Setup
 
