@@ -45,6 +45,7 @@ const main = async () => {
       },
     },
   });
+
   photon.disconnect();
 };
 
