@@ -5,7 +5,7 @@ datasource db {
 }
 
 generator photon {
-  provider = "javascript"
+  provider = "photogen"
   output   = "./generated/photon"
 }
 
