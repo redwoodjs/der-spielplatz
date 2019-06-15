@@ -11,6 +11,7 @@
     "dotenv": "^8.0.0",
     "graphql": "^14.3.1",
     "nexus": "^0.11.7",
+    "prisma2": "0.0.35",
     "require-dir": "^1.2.0"
   },
   "devDependencies": {
@@ -24,9 +25,6 @@
     "qs": "^6.7.0"
   },
   "scripts": {
-    "start": "nodemon --delay 1500ms --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions",
-    "migration:create": "prisma2 lift create",
-    "migration:up": "prisma2 lift up",
-    "migration:down": "prisma2 lift down"
+    "start": "nodemon --delay 1500ms --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions"
   }
 }
