@@ -1,0 +1,555 @@
+{
+  "version": "0.0.70",
+  "steps": [
+    {
+      "stepType": "CreateField",
+      "model": "Document",
+      "name": "content",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "content",
+      "arity": "optional"
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "Document",
+      "name": "path"
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "Document",
+      "name": "content"
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Document",
+      "name": "path",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Document",
+      "name": "content",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "document",
+      "type": {
+        "Relation": {
+          "to": "Document",
+          "to_fields": [],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "User",
+      "name": "comment",
+      "type": {
+        "Relation": {
+          "to": "Comment",
+          "to_fields": [],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Document",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "DocumentToUser",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Comment",
+      "name": "user",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CommentToUser",
+          "on_delete": "None"
+        }
+      }
+    }
+  ]
+}
