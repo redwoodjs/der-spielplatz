@@ -10,7 +10,7 @@ things you need during a Hammer development cycle.
 
 We're using Prisma Lift and Photon for migrations and the ORM. You can run
 `prisma2 dev` which watches for changes to the datamodel and automatically applies
-your migrations to a copy of your database and generates a new Photon client.
+your migrations to your database and generates a new Photon client.
 
 ## Migrations
 
