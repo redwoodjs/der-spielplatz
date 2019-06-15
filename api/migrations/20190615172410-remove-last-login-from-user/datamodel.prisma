@@ -19,7 +19,6 @@ model User {
 model Document {
   id        Int       @id
   name      String
-  path      String
   user      User
   comments  Comment[]
 }

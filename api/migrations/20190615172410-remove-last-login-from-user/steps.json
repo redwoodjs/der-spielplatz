@@ -1,0 +1,10 @@
+{
+  "version": "0.0.70",
+  "steps": [
+    {
+      "stepType": "DeleteField",
+      "model": "User",
+      "name": "lastLogin"
+    }
+  ]
+}
