@@ -2,11 +2,12 @@ import path from 'path';
 import requireDir from 'require-dir';
 import { queryType, makeSchema } from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
-import { Photon } from '@generated/photon';
+
+import { Photon } from '../../generated/photon';
 
 const GRAPHQL_DIR = path.join(__dirname, '../graphql/');
 const GRAPHQL_HOWTO = 'https://example.org/';
-const OUTPUTS_DIR = path.join(__dirname, '../../');
+const OUTPUTS_DIR = path.join(__dirname, '../../generated/');
 
 const helpString = `Start adding your Nexus schema definitions in ${GRAPHQL_DIR}, read more over here: ${GRAPHQL_HOWTO}`;
 const BaseQueryType = queryType({
