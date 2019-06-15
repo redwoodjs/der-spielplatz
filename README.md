@@ -6,41 +6,26 @@ it feels. Eventually, the things we learn here will be codified in the Hammer
 "architectural style" and a set of command line tools will help generate various
 things you need during a Hammer development cycle.
 
-## Production
-
-The `master` branch is deployed to https://spielplatz.netlify.com/.
-
-### Database
-
-This app currently uses an AWS RDS PostgresQL server (Tom's account).
-
 ## Development
 
-### PostgresQL
+We're using Prisma Lift and Photon for migrations and the ORM.
 
-Install PostgresQL locally with:
+## Migrations
 
 ```terminal
-brew install postgresql
-brew services start postgresql
-createdb derspielplatz
+npm install -g prisma2@0.0.35
+prisma2 -v
+prisma2@0.0.35
 ```
 
-### Env
+The data model is defined in: `api/datamodel.prisma`, when you modify the data
+model you generate a migaration with `cd api; prisma2 lift save`
 
-You'll need to create an `api/.env` file to specify database connection info. If you
-followed the commands above, you can simply use the following:
+To apply the migration run `prisma2 lift up`
 
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=
-DB_PASSWORD=
-DB_DATABASE=derspielplatz
-```
+## ORM
 
-If you set a user or password on your database, you'll need to fill those in as
-appropriate.
+You can generate the JavaScript client with `prisma2 generate`
 
 ## Setup
 
