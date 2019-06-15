@@ -1,0 +1,10 @@
+{
+  "events": {
+    "start": "kill-port 8910",
+    "restart": "kill-port 8910",
+    "crash": "kill-port 8910",
+    "exit": "kill-port 8910"
+  },
+  "signal": "SIGHUP",
+  "delay": "1500"
+}
