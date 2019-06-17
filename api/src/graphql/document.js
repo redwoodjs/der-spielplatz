@@ -15,11 +15,13 @@ export default extendType({
   definition: t => {
     t.list.field('documents', {
       type: 'Document',
-      // TODO: Figure out why `startsWith` isn't working
       args: { pathStartsWith: stringArg({ required: true, default: '://' }) },
       resolve(_root, { pathStartsWith }, { photon }) {
-        // FIXME: photon.documents({ where: { path : { startsWith: pathStartsWith }}})
-        return photon.documents();
+        // FIXME: Use `startsWith` instead of contains when that's fixed in Photon
+        return photon.documents({
+          select: { user: true },
+          where: { path: { contains: pathStartsWith } },
+        });
       },
     });
   },
