@@ -31,7 +31,7 @@ SQLite database in `./api/db/dev.db`
 You can generate the JavaScript client with `prisma2 generate`, this will be placed
 in `./api/generated/photon`
 
-API Docs: https://github.com/prisma/next/blob/bdf391bd783605063eac2a36689809ed3cb83a72/docs/photon/api.md
+Photon Docs (Under Construction): https://github.com/prisma/next/blob/bdf391bd783605063eac2a36689809ed3cb83a72/docs/photon/api.md
 
 ## Seeds
 
