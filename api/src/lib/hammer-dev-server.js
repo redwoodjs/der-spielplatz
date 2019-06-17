@@ -15,7 +15,7 @@ import requireDir from 'require-dir';
  */
 
 args
-  .option('port', '', 8910)
+  .option('port', '', 8911)
   .option('path', 'The path to your lambda functions', './src/functions');
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;

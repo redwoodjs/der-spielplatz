@@ -10,10 +10,10 @@ module.exports = merge(common, {
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, '../dist'),
-    port: 8911,
+    port: 8910,
     proxy: {
       '/.netlify/functions': {
-        target: 'http://localhost:8910',
+        target: 'http://localhost:8911',
         pathRewrite: {
           '^/\\.netlify/functions': '',
         },
