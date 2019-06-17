@@ -1,18 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Query as ApolloQuery } from 'react-apollo';
 
 import Skeleton from './Skeleton';
 
-const Query = ({
-  component, spec, children,
-}) => {
-  let skeleton;
-  if (component.queryProps) {
-    ({ skeleton } = component.queryProps);
-  }
+export default ({ queryProps, skeleton, children }) => {
   return (
-    <ApolloQuery {...spec}>
+    <ApolloQuery errorPolicy="all" {...queryProps}>
       {({ loading, error, data }) => {
         if (loading) {
           if (typeof skeleton !== 'undefined') {
@@ -34,11 +27,3 @@ const Query = ({
     </ApolloQuery>
   );
 };
-
-Query.propTypes = {
-  component: PropTypes.func,
-  spec: PropTypes.object,
-  children: PropTypes.func.isRequired,
-};
-
-export default Query;

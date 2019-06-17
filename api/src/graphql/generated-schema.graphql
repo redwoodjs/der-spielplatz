@@ -45,4 +45,5 @@ type User {
 
   """Full name of the user"""
   name: String!
+  username: String!
 }
