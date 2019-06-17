@@ -5,8 +5,7 @@ datasource db {
 }
 
 generator photon {
-  provider = "photogen"
-  output   = "./generated/photon"
+  provider = "javascript"
 }
 
 model User {
@@ -14,12 +13,13 @@ model User {
   username  String    @unique
   name      String?
   isActive  Boolean   @default(true)
-  lastLogin DateTime
 }
 
 model Document {
   id        Int       @id
   name      String
+  path      String    @unique
+  content   String?
   user      User
   comments  Comment[]
 }

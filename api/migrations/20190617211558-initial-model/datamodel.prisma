@@ -6,7 +6,6 @@ datasource db {
 
 generator photon {
   provider = "javascript"
-  output   = "./generated/photon"
 }
 
 model User {
@@ -19,7 +18,8 @@ model User {
 model Document {
   id        Int       @id
   name      String
-  path      String
+  path      String    @unique
+  content   String?
   user      User
   comments  Comment[]
 }

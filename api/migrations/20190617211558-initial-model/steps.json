@@ -1,6 +1,11 @@
 {
-  "version": "0.0.43",
+  "version": "0.0.96",
   "steps": [
+    {
+      "stepType": "CreateModel",
+      "name": "User",
+      "embedded": false
+    },
     {
       "stepType": "CreateModel",
       "name": "Document",
@@ -10,6 +15,53 @@
       "stepType": "CreateModel",
       "name": "Comment",
       "embedded": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "id",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "username",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "isActive",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Boolean": true
+      }
     },
     {
       "stepType": "CreateField",
@@ -63,6 +115,26 @@
         "Base": "String"
       },
       "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Document",
+      "name": "path",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Document",
+      "name": "content",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
       "isUnique": false
     },
     {
@@ -174,14 +246,6 @@
       },
       "arity": "optional",
       "isUnique": false
-    },
-    {
-      "stepType": "UpdateField",
-      "model": "User",
-      "name": "id",
-      "type": {
-        "Base": "Int"
-      }
     }
   ]
 }
