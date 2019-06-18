@@ -10,6 +10,7 @@ import * as Documents from './pages/Documents';
 
 import './global.css';
 
+// MVQ: ModelViewQuery
 const ViewWithQueryHandler = ({ module: { default: View, queryProps, skeleton }, ...rest }) => {
   const variables = parse(window.location.search, { ignoreQueryPrefix: true });
   return (

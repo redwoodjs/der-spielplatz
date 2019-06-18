@@ -18,7 +18,7 @@ export default ({ documents }) => {
   );
 };
 
-export const queryProps = props => ({
+export const queryProps = args => ({
   query: gql`
     query Documents {
       documents {
@@ -33,7 +33,7 @@ export const queryProps = props => ({
       }
     }
   `,
-  ...props,
+  ...args,
 });
 
 export const skeleton = () => {
