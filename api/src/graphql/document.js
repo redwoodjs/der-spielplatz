@@ -18,8 +18,8 @@ export default extendType({
       args: { pathStartsWith: stringArg({ required: true, default: '://' }) },
       resolve(_root, { pathStartsWith }, { photon }) {
         // FIXME: Use `startsWith` instead of contains when that's fixed in Photon
-        return photon.documents({
-          select: { user: true },
+        // FIXME: `select` and `includes` are not working
+        return photon.documents.findMany({
           where: { path: { contains: pathStartsWith } },
         });
       },

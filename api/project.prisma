@@ -5,14 +5,13 @@ datasource db {
 }
 
 generator photon {
-  provider = "javascript"
+  provider = "photonjs"
 }
 
 model User {
   id        Int       @id
   username  String    @unique
   name      String?
-  isActive  Boolean   @default(true)
 }
 
 model Document {

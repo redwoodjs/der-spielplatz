@@ -4,6 +4,7 @@ dist
 yarn-error.log
 api/failed-*.md
 api/db/*.db
+api/migrations/dev
 
 .docz
 */.env

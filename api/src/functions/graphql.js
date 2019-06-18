@@ -2,8 +2,8 @@ import path from 'path';
 import requireDir from 'require-dir';
 import { queryType, makeSchema } from 'nexus';
 import { ApolloServer } from 'apollo-server-lambda';
-
-import Photon from '../../generated/photon';
+// eslint-disable-next-line
+import Photon from '@generated/photon';
 
 const GRAPHQL_DIR = path.join(__dirname, '../graphql/');
 const GRAPHQL_HOWTO = 'https://example.org/';

@@ -1,4 +1,5 @@
-import Photon from './generated/photon';
+// eslint-disable-next-line
+import Photon from '@generated/photon';
 
 const photon = new Photon({ debug: false });
 

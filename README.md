@@ -15,9 +15,9 @@ your migrations to your database and generates a new Photon client.
 ## Migrations: Prisma Lift
 
 ```terminal
-npm install -g prisma2@0.0.86
+npm install -g prisma2@0.0.83
 prisma2 -v
-prisma2@0.0.86
+prisma2@0.0.83
 ```
 
 The data model is defined in: `api/datamodel.prisma`, when you modify the data
