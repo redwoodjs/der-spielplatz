@@ -6,8 +6,8 @@ import { ApolloServer } from 'apollo-server-lambda';
 import Photon from '@generated/photon';
 
 const GRAPHQL_DIR = path.join(__dirname, '../graphql/');
-const GRAPHQL_HOWTO = 'https://example.org/';
 const OUTPUTS_DIR = path.join(__dirname, '../../generated/');
+const GRAPHQL_HOWTO = 'https://example.org/';
 
 const helpString = `Start adding your Nexus schema definitions in ${GRAPHQL_DIR}, read more over here: ${GRAPHQL_HOWTO}`;
 const BaseQueryType = queryType({
@@ -27,7 +27,7 @@ const moreGraphQLTypes = requireDir(GRAPHQL_DIR, {
 const schema = makeSchema({
   types: [BaseQueryType, ...Object.values(moreGraphQLTypes)],
   outputs: {
-    schema: path.join(GRAPHQL_DIR, 'generated-schema.graphql'),
+    schema: path.join(OUTPUTS_DIR, 'api-schema.graphql'),
     typegen: path.join(OUTPUTS_DIR, 'generated-types.d.ts'),
   },
 });

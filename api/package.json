@@ -26,6 +26,7 @@
     "qs": "^6.7.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8911 --path ./src/functions"
+    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8911 --path ./src/functions",
+    "generate:fragments": "yarn graphql generate-fragments -p api -o ../web/src/generated --generator js"
   }
 }
