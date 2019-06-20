@@ -9470,6 +9470,11 @@ prisma-yml@1.26.6:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
+prisma2@0.0.87:
+  version "0.0.87"
+  resolved "https://registry.npmjs.org/prisma2/-/prisma2-0.0.87.tgz#96f1854ec95c7099a5bfa447ea80a4270cda85e7"
+  integrity sha512-EQbs6/VzczqO+Xh2syg7sdBs4JR1+Z4PoVwGiOILk07dX1Y5f3Ipp1ENk76vWgBElAgWs+kJHSMCrJ22D/db4A==
+
 private@^0.1.6, private@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"

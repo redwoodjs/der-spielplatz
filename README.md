@@ -14,24 +14,16 @@ your migrations to your database and generates a new Photon client.
 
 ## Migrations: Prisma Lift
 
-```terminal
-npm install -g prisma2@0.0.83
-prisma2 -v
-prisma2@0.0.83
-```
-
 The data model is defined in: `api/datamodel.prisma`, when you modify the data
-model you generate a migaration with `cd api; prisma2 lift save`
+model you generate a migaration with `yarn workspace api generate`
 
 To apply the migration run `prisma2 lift up`, this will create, or modify, a
 SQLite database in `./api/db/dev.db`
 
 ## ORM: Prisma Photon
 
-You can generate the JavaScript client with `prisma2 generate`, this will be placed
-in `./api/generated/photon`
-
-Photon Docs (Under Construction): https://github.com/prisma/next/blob/bdf391bd783605063eac2a36689809ed3cb83a72/docs/photon/api.md
+You can generate the JavaScript client with `cd api; prisma2 generate`, this will be placed
+in `./api/node_modules/@generated/photon`
 
 ## Seeds
 
