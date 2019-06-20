@@ -2,6 +2,8 @@ import React from 'react';
 import { gql } from 'src/lib/graphql';
 import { Link } from '@reach/router';
 
+import { DocumentFragment, UserNoNestingFragment } from 'generated/api.fragments';
+
 export default ({ documents }) => {
   return (
     <div>
@@ -20,16 +22,11 @@ export default ({ documents }) => {
 
 export const queryProps = args => ({
   query: gql`
-    query Documents {
+    ${DocumentFragment}
+    ${UserNoNestingFragment}
+    query MVQ_DOCUMENTS {
       documents {
-        id
-        path
-        name
-        user {
-          id
-          username
-          name
-        }
+        ...Document
       }
     }
   `,
