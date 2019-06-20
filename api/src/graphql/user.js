@@ -7,7 +7,6 @@ export const User = objectType({
     t.string('name', { description: 'Full name of the user' });
     t.string('username');
     t.boolean('isActive');
-    t.string('lastLogin');
   },
 });
 
