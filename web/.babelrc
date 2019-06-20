@@ -15,7 +15,8 @@
       "babel-plugin-module-resolver",
       {
         "alias": {
-          "src": "./src"
+          "src": "./src",
+          "generated": "./generated"
         }
       }
     ]
