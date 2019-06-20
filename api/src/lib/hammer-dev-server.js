@@ -1,7 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// TODO: https://github.com/remy/nodemon/issues/1316#issuecomment-441606950
 import path from 'path';
-
 import express from 'express';
 import expressLogging from 'express-logging';
 import bodyParser from 'body-parser';
@@ -17,7 +15,7 @@ import requireDir from 'require-dir';
  */
 
 args
-  .option('port', '', 8910)
+  .option('port', '', 8911)
   .option('path', 'The path to your lambda functions', './src/functions');
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;

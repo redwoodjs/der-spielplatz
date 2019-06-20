@@ -5,8 +5,8 @@ export const User = objectType({
   definition(t) {
     t.int('id');
     t.string('name', { description: 'Full name of the user' });
+    t.string('username');
     t.boolean('isActive');
-    t.string('lastLogin');
   },
 });
 

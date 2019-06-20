@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "api": {
+      "schemaPath": "./generated/api-schema.graphql"
+    }
+  }
+}

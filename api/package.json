@@ -20,13 +20,18 @@
     "eslint": "^5.8.0",
     "express": "^4.17.1",
     "express-logging": "^1.1.1",
+    "generate-fragments": "^0.0.1",
+    "graphql-cli": "^3.0.11",
+    "graphql-cli-generate-fragments": "^1.4.1",
+    "prisma2": "0.0.87",
+    "kill-port": "^1.5.1",
     "prettier-eslint": "^8.8.2",
     "qs": "^6.7.0"
   },
   "scripts": {
-    "start": "nodemon --delay 1500ms --exec babel-node ./src/lib/hammer-dev-server --port 8910 --path ./src/functions",
-    "migration:create": "prisma2 lift create",
-    "migration:up": "prisma2 lift up",
-    "migration:down": "prisma2 lift down"
+    "start": "nodemon --exec babel-node ./src/lib/hammer-dev-server --port 8911 --path ./src/functions",
+    "generate": "yarn generate:orm; yarn generate:fragments",
+    "generate:orm": "yarn prisma2 generate",
+    "generate:fragments": "yarn graphql generate-fragments -p api -o ../web/generated --generator js"
   }
 }

@@ -2,6 +2,13 @@
 ### Do not make changes to this file directly
 
 
+type Document {
+  id: Int!
+  name: String!
+  path: String!
+  user: User!
+}
+
 type Hammer {
   authors: [String!]!
   packages: HammerPackages!
@@ -18,6 +25,7 @@ type HammerPackages {
 
 type Query {
   currentUser: User
+  documents(pathStartsWith: String! = "://"): [Document!]!
   hammer: Hammer!
 
   """
@@ -33,8 +41,8 @@ type Query {
 type User {
   id: Int!
   isActive: Boolean!
-  lastLogin: String!
 
   """Full name of the user"""
   name: String!
+  username: String!
 }

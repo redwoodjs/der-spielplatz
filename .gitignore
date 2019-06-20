@@ -1,12 +1,12 @@
 node_modules
 dist
-
 yarn-error.log
+
 api/failed-*.md
 api/db/*.db
+api/migrations/dev
+api/generated/generated-types.d.ts
 
 .docz
 */.env
-*.sqlite
-.vscode
 .DS_Store
