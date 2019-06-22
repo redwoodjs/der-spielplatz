@@ -7,6 +7,8 @@ api/db/*.db
 api/migrations/dev
 api/generated/generated-types.d.ts
 
+web/generated
+
 .docz
 */.env
 .DS_Store
