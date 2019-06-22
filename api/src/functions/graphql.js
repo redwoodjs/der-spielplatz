@@ -9,13 +9,11 @@ const GRAPHQL_DIR = path.join(__dirname, '../graphql/');
 const OUTPUTS_DIR = path.join(__dirname, '../../generated/');
 const GRAPHQL_HOWTO = 'https://example.org/';
 
-const helpString = `Start adding your Nexus schema definitions in ${GRAPHQL_DIR}, read more over here: ${GRAPHQL_HOWTO}`;
 const BaseQueryType = queryType({
   definition(t) {
     t.string('help', {
-      description: helpString,
       resolve() {
-        return helpString;
+        return `Start adding your Nexus schema definitions in ${GRAPHQL_DIR}, read more over here: ${GRAPHQL_HOWTO}`;
       },
     });
   },

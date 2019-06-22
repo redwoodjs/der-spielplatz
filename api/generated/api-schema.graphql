@@ -27,12 +27,6 @@ type Query {
   currentUser: User
   documents(pathStartsWith: String! = "://"): [Document!]!
   hammer: Hammer!
-
-  """
-  Start adding your Nexus schema definitions in
-  /Users/peterp/Personal/der-spielplatz/api/src/graphql/, read more over here:
-  https://example.org/
-  """
   help: String!
   userById(id: Int!): User
   users: [User!]
