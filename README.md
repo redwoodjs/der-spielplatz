@@ -47,14 +47,19 @@ yarn babel-node api/seed.js
 yarn start
 ```
 
-Browse to `localhost:8911` to see the web app. Lambda functions run on
-`localhost:8910` but are proxied to `localhost:8911/.netlify/functions/*`.
+Browse to `localhost:8910` to see the web app. Lambda functions run on
+`localhost:8911` but are proxied to `localhost:8910/.netlify/functions/*`.
 
 ## Development
 
-We're using Prisma Lift and Photon for migrations and the ORM. You can run
-`prisma2 dev` which watches for changes to the datamodel and automatically applies
-your migrations to your database and generates a new Photon client.
+Running prisma dev will watch for changes to your datamodel and will
+automatically apply migrations to your database and update the generated
+Photon (ORM) client.
+
+```terminal
+cd api
+yarn prisma2 dev
+```
 
 ## Migrations: Prisma Lift
 
